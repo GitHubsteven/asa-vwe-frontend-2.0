@@ -1,9 +1,26 @@
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+/* eslint-disable no-undef */
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const {VueLoaderPlugin} = require('vue-loader')
 
 let port = 10090;
 
 module.exports = {
+    entry: {
+        // main: './src/index.js'
+        main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+            './src/index.js']
+    },
+    output: {
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/',
+        filename: '[name].js'
+    },
     mode: 'development',
+    target: 'web',
+    devtool: 'source-map',
     resolve: {
         extensions: ['.js', '.vue']
     },
@@ -66,7 +83,11 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
-    })],
+    }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new VueLoaderPlugin()
+    ],
     devServer: {
         historyApiFallback: true,
         port: port

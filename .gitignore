@@ -39,3 +39,7 @@ typings
 
 # Dist directory
 dist
+
+.idea
+
+package-lock.json
