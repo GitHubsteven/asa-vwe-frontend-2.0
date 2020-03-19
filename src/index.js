@@ -3,7 +3,7 @@ import VeeValidate from 'vee-validate';
 
 import {store} from './_store';
 import {router} from './_helpers';
-import App from './app/App';
+import App from './component/app/App';
 
 Vue.use(VeeValidate);
 

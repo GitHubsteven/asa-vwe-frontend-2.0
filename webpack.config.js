@@ -1,4 +1,6 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
+let port = 10090;
 
 module.exports = {
     mode: 'development',
@@ -16,7 +18,50 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+                options: {
+                    emitWarning: true,
+                    failOnError: false,
+                    failOnWarning: false
+                },
+            },
+            {
+                // Loads the javacript into html template provided.
+                // Entry point is set below in HtmlWebPackPlugin in Plugins
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader",
+                        //options: { minimize: true }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+                loader: 'file-loader'
             }
+            // ,
+            // {
+            //     test: /\.styl(us)?$/,
+            //     use: [
+            //         'vue-style-loader',
+            //         'css-loader',
+            //         'stylus-loader'
+            //     ]
+            // }
         ]
     },
     plugins: [new HtmlWebpackPlugin({
@@ -24,12 +69,12 @@ module.exports = {
     })],
     devServer: {
         historyApiFallback: true,
-        port: 10090
+        port: port
     },
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://localhost:4000'
+            apiUrl: 'http://localhost:' + port
         })
     }
-}
+};
