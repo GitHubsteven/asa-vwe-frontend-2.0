@@ -98,7 +98,7 @@
   import {ApiService} from '../js/apiService.js'
   import {AxiosService} from "../js/axiosService";
   import {ConvertService} from "../js/convertService";
-  import BlogComment from "./blog-comment.vue"
+  import BlogComment from "./CommentBlog.vue"
   //定义一个对象
   const apiService = new ApiService();
   let axiosService = new AxiosService();

@@ -1,9 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '../component/home/HomePage'
-import LoginPage from '../component/login/LoginPage'
-import RegisterPage from '../component/register/RegisterPage'
+import HomePage from '../component/home/Home'
+import LoginPage from '../component/login/Login'
+import RegisterPage from '../component/register/Register'
+import AddBlog from '../component/blog/AddBlog'
+import ListBlog from '../component/blog/ListBlog'
+import ViewBlog from '../component/blog/ViewBlog'
+import CommentBlog from '../component/blog/CommentBlog'
+
 
 Vue.use(Router);
 
@@ -13,7 +18,21 @@ export const router = new Router({
         {path: '/', component: HomePage},
         {path: '/login', component: LoginPage},
         {path: '/register', component: RegisterPage},
-
+        {
+            path: '/blog-list',
+            name: 'ListBlog',
+            component: ListBlog
+        },
+        {
+            path: '/blog-view',
+            name: 'ViewBlog',
+            component: ViewBlog
+        },
+        {
+            path: '/blog-add',
+            name: 'AddBlog',
+            component: AddBlog
+        },
         // otherwise redirect to home
         {path: '*', redirect: '/'}
     ]

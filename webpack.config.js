@@ -1,4 +1,3 @@
-let HtmlWebpackPlugin = require('html-webpack-plugin');
 /* eslint-disable no-undef */
 const path = require('path')
 const webpack = require('webpack')
@@ -81,7 +80,7 @@ module.exports = {
             // }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [new HtmlWebPackPlugin({
         template: './src/index.html'
     }),
         new webpack.HotModuleReplacementPlugin(),
