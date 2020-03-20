@@ -39,7 +39,7 @@
                                 {{createSyllabus(blog.context)}}
                             </div>
                             <div class="text item">
-                                <el-tag type="info">测试</el-tag>
+                                <el-tag type="info">test</el-tag>
                                 <el-tag type="info">{{blog.author}}</el-tag>
                                 <el-tag type="info">{{blog.createTime}}</el-tag>
                             </div>
@@ -67,8 +67,8 @@
 
 <script>
     //引入接口辅助类
-    import {ApiService} from '../js/apiService.js'
-    import {ConvertService} from "../js/convertService";
+    import {ApiService} from "../../_services/apiService";
+    import {ConvertService} from "../../_services/convertService";
     //定义一个对象
     const apiService = new ApiService();
     let convertService = new ConvertService();

@@ -7,7 +7,6 @@ import RegisterPage from '../component/register/Register'
 import AddBlog from '../component/blog/AddBlog'
 import ListBlog from '../component/blog/ListBlog'
 import ViewBlog from '../component/blog/ViewBlog'
-import CommentBlog from '../component/blog/CommentBlog'
 
 
 Vue.use(Router);

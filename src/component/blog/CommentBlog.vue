@@ -67,99 +67,99 @@
 </template>
 
 <script>
-  import {AxiosService} from "../js/axiosService";
-  import {ConvertService} from "../js/convertService";
+    import {AxiosService} from "../../_services/axiosService";
+    import {ConvertService} from "../../_services/convertService";
 
-  let axiosService = new AxiosService();
-  let convertService = new ConvertService();
+    let axiosService = new AxiosService();
+    let convertService = new ConvertService();
 
-  export default {
-    name: "blog-comment",
-    props: {
-      commentObj: {
-        author: "asa.x",
-        createTime: "2019-06-24 13:14:15",
-        context: null,
-        subComments: [],
-        _id: null
-      }
-    },
-    data() {
-      return {
-        isShowAttachComments: false,
-        commentFormVisible: false,
-        comment: {
-          email: null,
-          context: null,
-          author: "asa-x",
-          refId: null
+    export default {
+        name: "blog-comment",
+        props: {
+            commentObj: {
+                author: "asa.x",
+                createTime: "2019-06-24 13:14:15",
+                context: null,
+                subComments: [],
+                _id: null
+            }
         },
-        commentTmp: this.commentObj
-      }
-    },
-    methods: {
-      getRefComments() {
+        data() {
+            return {
+                isShowAttachComments: false,
+                commentFormVisible: false,
+                comment: {
+                    email: null,
+                    context: null,
+                    author: "asa-x",
+                    refId: null
+                },
+                commentTmp: this.commentObj
+            }
+        },
+        methods: {
+            getRefComments() {
 
-      },
-      getSubComments(comment) {
-        axiosService.get("/comment-getSubs/" + comment.blogId + "/" + comment._id)
-          .then(subComments => {
-            comment.subComments = convertService.divideComment2(subComments, comment._id);
-          });
-      },
-      reportComment() {
-      },
-      delComment() {
-      },
-      refComment() {
-        this.commentFormVisible = true;
-      },
-      submitComment(comment) {
-        if (!comment.context) {
-          window.alert("邮箱和评论不能为空！");
-          return;
+            },
+            getSubComments(comment) {
+                axiosService.get("/comment-getSubs/" + comment.blogId + "/" + comment._id)
+                  .then(subComments => {
+                      comment.subComments = convertService.divideComment2(subComments, comment._id);
+                  });
+            },
+            reportComment() {
+            },
+            delComment() {
+            },
+            refComment() {
+                this.commentFormVisible = true;
+            },
+            submitComment(comment) {
+                if (!comment.context) {
+                    window.alert("邮箱和评论不能为空！");
+                    return;
+                }
+                comment.email = "ref comment@asa.com";
+                comment.refId = this.commentTmp._id;
+                comment.blogId = this.commentTmp.blogId;
+                if (!comment.refId) {
+                    window.alert("refId is blank!");
+                    return;
+                }
+                comment.author = "asa.x";
+                axiosService.post("/comments-create", comment).then((resp) => {
+                    convertService.clearObjVal(this.comment);
+                    this.commentFormVisible = false;
+                    if (resp && resp._id) {
+                        //表示成功
+                        this.getSubComments(this.commentObj);
+                        this.$notify({
+                            title: '成功',
+                            message: "保存成功",
+                            type: 'success'
+                        });
+                        // this.getComments(this.$route.query.blogId);
+                    } else {
+                        //表示失败
+                        this.$notify({
+                            title: '失败',
+                            message: '保存失败！',
+                            type: 'warning'
+                        });
+                        console.log(resp);
+                        this.isShowAttachComments = false;
+                    }
+                })
+            }
+        },
+        watch: {
+            commentObj: function (oldValue, newValue) {
+                if (!oldValue._id && newValue._id) {
+                    Object.assign(this.commentTmp, newValue);
+                }
+            }
         }
-        comment.email = "ref comment@asa.com";
-        comment.refId = this.commentTmp._id;
-        comment.blogId = this.commentTmp.blogId;
-        if (!comment.refId) {
-          window.alert("refId is blank!");
-          return;
-        }
-        comment.author = "asa.x";
-        axiosService.post("/comments-create", comment).then((resp) => {
-          convertService.clearObjVal(this.comment);
-          this.commentFormVisible = false;
-          if (resp && resp._id) {
-            //表示成功
-            this.getSubComments(this.commentObj);
-            this.$notify({
-              title: '成功',
-              message: "保存成功",
-              type: 'success'
-            });
-            // this.getComments(this.$route.query.blogId);
-          } else {
-            //表示失败
-            this.$notify({
-              title: '失败',
-              message: '保存失败！',
-              type: 'warning'
-            });
-            console.log(resp);
-            this.isShowAttachComments = false;
-          }
-        })
-      }
-    },
-    watch: {
-      commentObj: function (oldValue, newValue) {
-        if (!oldValue._id && newValue._id) {
-          Object.assign(this.commentTmp, newValue);
-        }
-      }
     }
-  }
 </script>
 
 <style scoped>

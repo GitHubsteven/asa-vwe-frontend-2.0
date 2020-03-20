@@ -47,8 +47,8 @@
 </template>
 
 <script>
-    import {ApiService} from "../js/apiService";
-    import {ConvertService} from "../js/convertService";
+    import {ApiService} from "../../_services/apiService";
+    import {ConvertService} from "../../_services/convertService";
     // es modules
     import Editor from '@tinymce/tinymce-vue';
 
@@ -111,8 +111,8 @@
             update() {
                 let oldBlog = blogTmp;
                 if (oldBlog.title === this.blog.title
-                    && oldBlog.context === this.blog.context
-                    && oldBlog.author === this.blog.author) {
+                  && oldBlog.context === this.blog.context
+                  && oldBlog.author === this.blog.author) {
                     window.alert("there is no change!");
                     return;
                 }

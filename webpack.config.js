@@ -8,9 +8,9 @@ let port = 10090;
 
 module.exports = {
     entry: {
-        // main: './src/index.js'
-        main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-            './src/index.js']
+        main: './src/index.js'
+        // main: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+        //     './src/index.js']
     },
     output: {
         path: path.join(__dirname, 'dist'),
