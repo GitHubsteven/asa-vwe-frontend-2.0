@@ -8,7 +8,7 @@
                         <el-menu-item index="/blog-list">
                             Blogs
                         </el-menu-item>
-                        <el-menu-item v-if="username == null" index="/user-login" style="float: right">
+                        <el-menu-item v-if="username == null" index="/login" style="float: right">
                             Login
                         </el-menu-item>
                         <el-menu-item v-if="username != null" style="float: right">

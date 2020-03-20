@@ -6,14 +6,14 @@
                     <el-col :span="3">
                         <div>
                             <router-link to="/blog-add">
-                                <el-button type="primary">增加博客</el-button>
+                                <el-button type="primary">Add</el-button>
                             </router-link>
                         </div>
                     </el-col>
 
                     <el-col :span="5" :offset="11">
                         <div>
-                            <el-input placeholder="请输入内容" v-model="searchers.title">
+                            <el-input placeholder="input content" v-model="searchers.title">
                                 <template slot="prepend">博客名称</template>
                                 <el-button slot="append" icon="el-icon-search" @click="searchBlogs()"></el-button>
                             </el-input>

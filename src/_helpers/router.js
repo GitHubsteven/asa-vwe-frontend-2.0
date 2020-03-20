@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '../component/home/Home.vue'
 import LoginPage from '../component/login/Login'
 import RegisterPage from '../component/register/Register'
 import AddBlog from '../component/blog/AddBlog'
@@ -14,7 +13,7 @@ Vue.use(Router);
 export const router = new Router({
     mode: 'history',
     routes: [
-        {path: '/', component: HomePage},
+        {path: '/', component: ListBlog},
         {path: '/login', component: LoginPage},
         {path: '/register', component: RegisterPage},
         {
@@ -43,9 +42,9 @@ router.beforeEach((to, from, next) => {
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
 
-    if (authRequired && !loggedIn) {
-        return next('/login');
-    }
+    // if (authRequired && !loggedIn) {
+    //     return next('/login');
+    // }
 
     next();
 });
