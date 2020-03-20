@@ -1,77 +1,129 @@
 <template>
-    <div>
-        <h2>Register</h2>
-        <form @submit.prevent="handleSubmit">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" v-model="user.firstName" v-validate="'required'" name="firstName"
-                       class="form-control" :class="{ 'is-invalid': submitted && errors.has('firstName') }"/>
-                <div v-if="submitted && errors.has('firstName')" class="invalid-feedback">{{ errors.first('firstName')
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" v-model="user.lastName" v-validate="'required'" name="lastName" class="form-control"
-                       :class="{ 'is-invalid': submitted && errors.has('lastName') }"/>
-                <div v-if="submitted && errors.has('lastName')" class="invalid-feedback">{{ errors.first('lastName')
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" v-model="user.username" v-validate="'required'" name="username" class="form-control"
-                       :class="{ 'is-invalid': submitted && errors.has('username') }"/>
-                <div v-if="submitted && errors.has('username')" class="invalid-feedback">{{ errors.first('username')
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" v-model="user.password" v-validate="{ required: true, min: 6 }" name="password"
-                       class="form-control" :class="{ 'is-invalid': submitted && errors.has('password') }"/>
-                <div v-if="submitted && errors.has('password')" class="invalid-feedback">{{ errors.first('password')
-                    }}
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" :disabled="status.registering">Register</button>
-                <img v-show="status.registering"
-                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-                <router-link to="/login" class="btn btn-link">Cancel</router-link>
-            </div>
-        </form>
-    </div>
+    <el-row>
+        <el-col :span="8" :offset="8" style="margin-top: 8%">
+            <el-form :model="register" status-icon :rules="rules" ref="register" label-width="100px"
+                     class="demo-register">
+                <el-form-item label="名称" prop="name">
+                    <el-input type="text" v-model="register.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input type="email" v-model="register.email" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="pass">
+                    <el-input type="password" v-model="register.pass" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码" prop="checkPass">
+                    <el-input type="password" v-model="register.checkPass" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('register')">提交</el-button>
+                    <el-button @click="resetForm('register')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-col>
+    </el-row>
+
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex'
+    import {AxiosService} from "../../_services/axiosService"
 
+    let axiosService = new AxiosService();
     export default {
+        name: "user-register",
         data() {
+            let validateName = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入名称'));
+                }
+                callback();
+            };
+            let validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入密码'));
+                } else {
+                    if (this.register.checkPass !== '') {
+                        this.$refs.register.validateField('checkPass');
+                    }
+                    callback();
+                }
+            };
+            let validatePass2 = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if (value !== this.register.pass) {
+                    callback(new Error('两次输入密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+            let validateEmail = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error("请输入邮箱"));
+                } else {
+                    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    if (!re.test(String(value).toLowerCase())) {
+                        callback(new Error('请输入正确的邮箱地址!'));
+                    } else {
+                        callback();
+                    }
+                }
+            };
             return {
-                user: {
-                    firstName: '',
-                    lastName: '',
-                    username: '',
-                    password: ''
+                register: {
+                    name: "",
+                    email: '',
+                    pass: '',
+                    checkPass: ''
                 },
-                submitted: false
-            }
-        },
-        computed: {
-            ...mapState('account', ['status'])
+                rules: {
+                    name: [
+                        {validator: validateName, trigger: 'blur'}
+                    ],
+                    email: [
+                        {validator: validateEmail, trigger: ['blur', 'change']}
+                    ],
+                    pass: [
+                        {validator: validatePass, trigger: 'blur'}
+                    ],
+                    checkPass: [
+                        {validator: validatePass2, trigger: 'blur'}
+                    ],
+                }
+            };
         },
         methods: {
-            ...mapActions('account', ['register']),
-            handleSubmit(e) {
-                this.submitted = true;
-                this.$validator.validate().then(valid => {
+            submitForm(formName) {
+                let main = this;
+                this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.register(this.user);
+                        axiosService.post("/user-register", this.register).then(resp => {
+                            //如果_id存在的话，那么就是注册成功了
+                            if (typeof resp === 'object' && resp._id) {
+                                setTimeout(function () {
+                                    alert("register successfully!");
+                                    main.$router.push({
+                                        path: '/user-login',
+                                        name: 'UserLogin',
+                                    })
+                                }, 1000)
+                            } else {
+                                alert(resp.message);
+                            }
+                        })
+                    } else {
+                        alert('plz fill the info correctly!');
+                        return false;
                     }
                 });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
             }
         }
-    };
+    }
 </script>
+
+<style scoped>
+
+</style>

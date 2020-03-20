@@ -1,0 +1,52 @@
+h4 {
+    font-family: helvetica, serif;
+    color: deepskyblue;
+    background: ghostwhite;
+}
+
+/*.border-style {*/
+/*border: 10px deepskyblue;*/
+/*}*/
+.part {
+    display: inline-block;
+    width: 500px;
+    height: 600px;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    min-width: 200px;
+    min-height: 50px;
+}
+
+.description {
+    font-size: 14px;
+    color: red;
+}
+
+.awful-selfie {
+    width: 300px;
+    height: 300px;
+    background-size: 100% auto;
+    background: url(../img/cat.jpg) no-repeat;
+}
+
+.footer_context {
+    margin-left: 40%;
+    margin-bottom: 1%;
+}
+
+.vwe_pagination {
+    margin-top: 1%;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: calc(95%);
+}

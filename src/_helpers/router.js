@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '../component/home/Home'
+import HomePage from '../component/home/Home.vue'
 import LoginPage from '../component/login/Login'
 import RegisterPage from '../component/register/Register'
 import AddBlog from '../component/blog/AddBlog'
@@ -48,4 +48,4 @@ router.beforeEach((to, from, next) => {
     }
 
     next();
-})
+});
