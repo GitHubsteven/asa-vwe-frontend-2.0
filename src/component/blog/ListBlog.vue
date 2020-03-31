@@ -14,7 +14,7 @@
                     <el-col :span="5" :offset="11">
                         <div>
                             <el-input placeholder="input content" v-model="searchers.title">
-                                <template slot="prepend">博客名称</template>
+                                <template slot="prepend">title</template>
                                 <el-button slot="append" icon="el-icon-search" @click="searchBlogs()"></el-button>
                             </el-input>
                         </div>

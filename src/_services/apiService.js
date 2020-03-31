@@ -1,7 +1,7 @@
 //导入axios
 import axios from 'axios'
 //定义主机，定义别的主机可能会报跨域错误
-const API_URL = "http://localhost:8090";
+const API_URL = "/api";
 
 //定义并且曝光出一个类
 export class ApiService {
@@ -10,12 +10,12 @@ export class ApiService {
 
 //定义一个方法查询
   getBlogs(searchOpt) {
-    const url = `${API_URL}/blog/list`;
+    const url = `${API_URL}/blog-list`;
     return axios.post(url, searchOpt).then((res) => res.data);
   }
 
   listBlogs(searchOpt) {
-    const url = `${API_URL}/api/blog/list`;
+    const url = `${API_URL}/blog/list`;
     return axios.post(url, searchOpt).then((res) => res.data);
   }
 

@@ -3,16 +3,16 @@
         <el-col :span="8" :offset="8" style="margin-top: 8%">
             <el-form :model="register" status-icon :rules="rules" ref="register" label-width="100px"
                      class="demo-register">
-                <el-form-item label="名称" prop="name">
+                <el-form-item label="Name" prop="name">
                     <el-input type="text" v-model="register.name" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="邮箱" prop="email">
+                <el-form-item label="Email" prop="email">
                     <el-input type="email" v-model="register.email" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="密码" prop="pass">
+                <el-form-item label="Password" prop="pass">
                     <el-input type="password" v-model="register.pass" autocomplete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码" prop="checkPass">
+                <el-form-item label="CheckPassword" prop="checkPass">
                     <el-input type="password" v-model="register.checkPass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item>

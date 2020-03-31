@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const {VueLoaderPlugin} = require('vue-loader')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const {VueLoaderPlugin} = require('vue-loader');
 
 let port = 10090;
 
@@ -81,7 +81,9 @@ module.exports = {
         ]
     },
     plugins: [new HtmlWebPackPlugin({
-        template: './src/index.html'
+        template: './src/index.html',
+        // filename: "./index.html",
+        excludeChunks: ['server']
     }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
@@ -89,7 +91,14 @@ module.exports = {
     ],
     devServer: {
         historyApiFallback: true,
-        port: port
+        port: port,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8090',
+                changeOrigin: true,
+                pathRewrite: {'/api': ''}
+            }
+        }
     },
     externals: {
         // global app config object

@@ -94,165 +94,166 @@
 </template>
 
 <script>
-  //引入接口辅助类
-  import {ApiService} from '../../_services/apiService.js'
-  import {AxiosService} from "../../_services/axiosService";
-  import {ConvertService} from "../../_services/convertService";
-  import BlogComment from "./CommentBlog.vue"
-  //定义一个对象
-  const apiService = new ApiService();
-  let axiosService = new AxiosService();
-  import * as _ from "lodash"
+    //引入接口辅助类
+    import {ApiService} from '../../_services/apiService.js'
+    import {AxiosService} from "../../_services/axiosService";
+    import {ConvertService} from "../../_services/convertService";
+    import BlogComment from "./CommentBlog.vue"
+    import * as _ from "lodash"
+    //定义一个对象
+    const apiService = new ApiService();
+    let axiosService = new AxiosService();
 
-  let convertService = new ConvertService();
+    let convertService = new ConvertService();
 
-  export default {
-    name: "blog-view",
-    components: {
-      "blog-comment": BlogComment
-    },
-    data() {
-      return {
-        blog: {
-          title: null,
-          context: null,
-          author: null,
-          createTime: null,
-          _id: null
+    export default {
+        name: "blog-view",
+        components: {
+            "blog-comment": BlogComment
         },
-        comment: {
-          author: "asa.x",
-          email: null,
-          context: null,
-          blogId: this.$route.query.blogId,
-          refId: null
+        data() {
+            return {
+                blog: {
+                    title: null,
+                    context: null,
+                    author: null,
+                    createTime: null,
+                    _id: null
+                },
+                comment: {
+                    author: "asa.x",
+                    email: null,
+                    context: null,
+                    blogId: this.$route.query.blogId,
+                    refId: null
+                },
+                isRefComDialogVisual: false,
+                rules: {
+                    email: [
+                        {required: true, message: '请输入邮箱', trigger: 'blur'},
+                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                    ],
+                    region: [
+                        {required: true, message: '请选择活动区域', trigger: 'change'}
+                    ],
+                },
+                blogComments: [],
+                refCommentObj: {
+                    _id: null,
+                    context: null,
+                    author: null
+                },
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                }
+            };
         },
-        isRefComDialogVisual: false,
-        rules: {
-          email: [
-            {required: true, message: '请输入邮箱', trigger: 'blur'},
-            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
-          ],
-          region: [
-            {required: true, message: '请选择活动区域', trigger: 'change'}
-          ],
+        methods: {
+            init() {
+                // let id = this.$route.query.blogId;
+                let id = "5e6e30037461303fa415e922";
+                if (!id) {
+                    this.$alert('没有id', '警告', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            //do nothing!
+                        }
+                    });
+                }
+                this.comment.blogId = id;
+                this.getBlog(id);
+                this.getComments(id);
+            },
+            getBlog(id) {
+                apiService.viewBlog(id).then(resp => {
+                    console.log(resp);
+                    _.extend(this.blog, resp);
+                });
+            },
+            getComments(blogId) {
+                if (blogId == null) blogId = this.$route.query.blogId;
+                axiosService.get("/blog-comments/" + blogId).then(resp => {
+                    this.blogComments = convertService.divideComment(resp);
+                });
+            },
+            convertMarkdown(context) {
+                return convertService.makeHtml(context);
+            },
+            /**
+             * 提交评论
+             * @param comment
+             */
+            submitComment(comment) {
+                if (!comment.email || !comment.context) {
+                    window.alert("邮箱和评论不能为空！");
+                    return;
+                }
+                axiosService.post("/comments-create/", comment).then((resp) => {
+                    if (resp._id) {
+                        //表示成功
+                        this.$notify({
+                            title: '成功',
+                            message: "保存成功",
+                            type: 'success'
+                        });
+                        convertService.clearObjVal(this.comment);
+                        this.getComments(this.$route.query.blogId);
+                    } else {
+                        //表示失败
+                        this.$notify({
+                            title: '失败',
+                            message: '保存失败！',
+                            type: 'warning'
+                        });
+                    }
+                    this.isRefComDialogVisual = false;
+                })
+            },
+            reportComment(com) {
+                window.alert("举报评论!");
+            },
+            refComment(com) {
+                if (this.refCommentObj._id != null) {
+                    window.alert("请先关闭其他为完成的评论!");
+                    return;
+                }
+                Object.assign(this.refCommentObj, com);
+                this.isRefComDialogVisual = true;
+            },
+            delComment(com) {
+                window.alert("删除评论：" + com.context);
+            },
+            confirmRefCmdDialog() {
+                this.comment.refId = this.refCommentObj._id;
+                this.isRefComDialogVisual = false;
+                this.submitComment(this.comment);
+            },
+            cancelRefCmdDialog() {
+                this.isRefComDialogVisual = false;
+            },
+            getRefComments(comment) {
+                window.alert("查看引用的评论");
+            },
+            isHasRefComment(refId) {
+                return !!refId;
+            },
+            handleNodeClick(data) {
+                console.log(data);
+            },
+
         },
-        blogComments: [],
-        refCommentObj: {
-          _id: null,
-          context: null,
-          author: null
+        mounted() {
+            this.init();
         },
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
-      };
-    },
-    methods: {
-      init() {
-        let id = this.$route.query.blogId;
-        if (!id) {
-          this.$alert('没有id', '警告', {
-            confirmButtonText: '确定',
-            callback: action => {
-              //do nothing!
+        watch: {
+            isRefComDialogVisual(value) {
+                if (value != null) {
+                    if (value === false) {
+                        convertService.clearObjVal(this.refCommentObj);
+                    }
+                }
             }
-          });
         }
-        this.comment.blogId = id;
-        this.getBlog(id);
-        this.getComments(id);
-      },
-      getBlog(id) {
-        apiService.viewBlog(id).then(resp => {
-          console.log(resp);
-          _.extend(this.blog, resp);
-        });
-      },
-      getComments(blogId) {
-        if (blogId == null) blogId = this.$route.query.blogId;
-        axiosService.get("/blog-comments/" + blogId).then(resp => {
-          this.blogComments = convertService.divideComment(resp);
-        });
-      },
-      convertMarkdown(context) {
-        return convertService.makeHtml(context);
-      },
-      /**
-       * 提交评论
-       * @param comment
-       */
-      submitComment(comment) {
-        if (!comment.email || !comment.context) {
-          window.alert("邮箱和评论不能为空！");
-          return;
-        }
-        axiosService.post("/comments-create/", comment).then((resp) => {
-          if (resp._id) {
-            //表示成功
-            this.$notify({
-              title: '成功',
-              message: "保存成功",
-              type: 'success'
-            });
-            convertService.clearObjVal(this.comment);
-            this.getComments(this.$route.query.blogId);
-          } else {
-            //表示失败
-            this.$notify({
-              title: '失败',
-              message: '保存失败！',
-              type: 'warning'
-            });
-          }
-          this.isRefComDialogVisual = false;
-        })
-      },
-      reportComment(com) {
-        window.alert("举报评论!");
-      },
-      refComment(com) {
-        if (this.refCommentObj._id != null) {
-          window.alert("请先关闭其他为完成的评论!");
-          return;
-        }
-        Object.assign(this.refCommentObj, com);
-        this.isRefComDialogVisual = true;
-      },
-      delComment(com) {
-        window.alert("删除评论：" + com.context);
-      },
-      confirmRefCmdDialog() {
-        this.comment.refId = this.refCommentObj._id;
-        this.isRefComDialogVisual = false;
-        this.submitComment(this.comment);
-      },
-      cancelRefCmdDialog() {
-        this.isRefComDialogVisual = false;
-      },
-      getRefComments(comment) {
-        window.alert("查看引用的评论");
-      },
-      isHasRefComment(refId) {
-        return !!refId;
-      },
-      handleNodeClick(data) {
-        console.log(data);
-      },
-
-    },
-    mounted() {
-      this.init();
-    },
-    watch: {
-      isRefComDialogVisual(value) {
-        if (value != null) {
-          if (value === false) {
-            convertService.clearObjVal(this.refCommentObj);
-          }
-        }
-      }
     }
-  }
 </script>

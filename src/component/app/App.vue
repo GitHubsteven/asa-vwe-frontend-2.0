@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import router from '../../_helpers/router.js'
+    import {router} from '../../_helpers/router.js'
 
     export default {
         name: "App",
