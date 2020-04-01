@@ -151,8 +151,8 @@
         },
         methods: {
             init() {
-                // let id = this.$route.query.blogId;
-                let id = "5e6e30037461303fa415e922";
+                let id = this.$route.query.blogId;
+                // let id = "5e6e30037461303fa415e922";
                 if (!id) {
                     this.$alert('没有id', '警告', {
                         confirmButtonText: '确定',
