@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
 
-let port = 10090;
+let port = 9090;
 
 module.exports = {
     entry: {
@@ -94,7 +94,7 @@ module.exports = {
         port: port,
         proxy: {
             '/api': {
-                target: 'http://localhost:8090',
+                target: 'http://localhost:9000',
                 changeOrigin: true,
                 pathRewrite: {'/api': ''}
             }
