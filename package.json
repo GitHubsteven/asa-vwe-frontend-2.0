@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "build": "webpack --mode production"
   },
   "bugs": {
