@@ -3,8 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
+const config = require("./config.json");
 
-let port = 9090;
+let port = config.port;
 
 module.exports = {
     entry: {
@@ -35,17 +36,17 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
             },
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "eslint-loader",
-                options: {
-                    emitWarning: true,
-                    failOnError: false,
-                    failOnWarning: false
-                },
-            },
+            // {
+            //     enforce: "pre",
+            //     test: /\.js$/,
+            //     exclude: /node_modules/,
+            //     loader: "eslint-loader",
+            //     options: {
+            //         emitWarning: true,
+            //         failOnError: false,
+            //         failOnWarning: false
+            //     },
+            // },
             {
                 // Loads the javacript into html template provided.
                 // Entry point is set below in HtmlWebPackPlugin in Plugins
@@ -92,9 +93,11 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         port: port,
+        host: '0.0.0.0',
+        contentBase: path.join(__dirname, "dist"),
         proxy: {
             '/api': {
-                target: 'http://localhost:9000',
+                target: 'http://localhost:9090',
                 changeOrigin: true,
                 pathRewrite: {'/api': ''}
             }
