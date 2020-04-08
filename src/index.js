@@ -12,8 +12,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.use(Vuex);
 
-
-configureFakeBackend();
+// configureFakeBackend();
 
 new Vue({
     el: '#app',
