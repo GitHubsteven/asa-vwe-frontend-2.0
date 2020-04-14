@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import {store} from './_store';
 // setup fake backend
-import {configureFakeBackend, router} from './_helpers';
+import {router} from './_helpers';
 import App from './component/app/App';
 import './css/style.css'
 import ElementUI from 'element-ui';
