@@ -116,7 +116,7 @@
             detail(blog) {
                 this.$router.push({
                     path: '/blog-view',
-                    name: 'ViewBlog',
+                    name: 'BlogView',
                     query: {
                         blogId: blog._id
                     }

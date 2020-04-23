@@ -89,7 +89,7 @@
                         //页面跳转
                         this.$router.push({
                             path: '/blog-list',
-                            name: 'ListBlog'
+                            name: 'BlogList'
                         })
                     }
                 })
