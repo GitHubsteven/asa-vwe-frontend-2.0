@@ -99,10 +99,10 @@
             },
 
             init() {
-                let blogStr = this.$route.query.blog;
-                if (blogStr) {
-                    blogTmp = JSON.parse(blogStr);
-                    Object.assign(this.blog, blogTmp);
+                let blog = this.$route.query.blog;
+                if (blog) {
+                    blogTmp = blog;
+                    Object.assign(this.blog, blog);
                     return;
                 }
                 this.layout.editor_span = 20;

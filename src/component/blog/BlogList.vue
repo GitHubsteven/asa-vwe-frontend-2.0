@@ -148,7 +148,7 @@
                     path: "/blog-add",
                     name: "BlogAdd",
                     query: {
-                        blog: JSON.stringify(blog)
+                        blog: blog
                     }
                 })
             },
