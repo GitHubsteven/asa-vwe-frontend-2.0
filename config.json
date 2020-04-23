@@ -1,4 +1,4 @@
 {
-  "port": 9090,
-  "apiPort": 9000
+  "port": 9800,
+  "apiPort": 9090
 }

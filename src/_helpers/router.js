@@ -3,9 +3,9 @@ import Router from 'vue-router';
 
 import LoginPage from '../component/login/Login'
 import RegisterPage from '../component/register/Register'
-import AddBlog from '../component/blog/AddBlog'
-import ListBlog from '../component/blog/ListBlog'
-import ViewBlog from '../component/blog/ViewBlog'
+import BlogAdd from '../component/blog/BlogAdd'
+import BlogList from '../component/blog/BlogList'
+import BlogView from '../component/blog/BlogView'
 
 
 Vue.use(Router);
@@ -13,23 +13,23 @@ Vue.use(Router);
 export const router = new Router({
     mode: 'history',
     routes: [
-        {path: '/', component: ListBlog},
+        {path: '/', component: BlogList},
         {path: '/login', component: LoginPage},
         {path: '/register', component: RegisterPage},
         {
             path: '/blog-list',
-            name: 'ListBlog',
-            component: ListBlog
+            name: 'BlogList',
+            component: BlogList
         },
         {
             path: '/blog-view',
-            name: 'ViewBlog',
-            component: ViewBlog
+            name: 'BlogView',
+            component: BlogView
         },
         {
             path: '/blog-add',
-            name: 'AddBlog',
-            component: AddBlog
+            name: 'BlogAdd',
+            component: BlogAdd
         },
         // otherwise redirect to home
         {path: '*', redirect: '/'}

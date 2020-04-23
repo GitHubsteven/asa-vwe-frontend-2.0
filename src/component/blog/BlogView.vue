@@ -98,7 +98,7 @@
     import {ApiService} from '../../_services/apiService.js'
     import {AxiosService} from "../../_services/axiosService";
     import {ConvertService} from "../../_services/convertService";
-    import BlogComment from "./CommentBlog.vue"
+    import BlogComment from "./BlogComment.vue"
     import * as _ from "lodash"
     //定义一个对象
     const apiService = new ApiService();
