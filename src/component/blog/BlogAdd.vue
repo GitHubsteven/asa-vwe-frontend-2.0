@@ -47,13 +47,13 @@
 </template>
 
 <script>
-    import {ApiService} from "../../_services/apiService";
-    import {ConvertService} from "../../_services/convertService";
+    import {BlogService} from "../../_services/blog.service";
+    import {ConvertService} from "../../_services/convert.service";
     // es modules
     import Editor from '@tinymce/tinymce-vue';
 
     let convertService = new ConvertService();
-    let apiService = new ApiService();
+    let blogService = new BlogService();
 
     let blogTmp = {};
     export default {
@@ -82,7 +82,7 @@
         },
         methods: {
             create() {
-                apiService.createBlog(this.blog).then(res => {
+                blogService.createBlog(this.blog).then(res => {
                     if (!res._id) {
                         window.alert("res:" + res.message);
                     } else {
@@ -116,7 +116,7 @@
                     window.alert("there is no change!");
                     return;
                 }
-                apiService.update(this.blog).then((resp) => {
+                blogService.update(this.blog).then((resp) => {
                     if (!resp) {
                         window.alert("update failed!");
                     }

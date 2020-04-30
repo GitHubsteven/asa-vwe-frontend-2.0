@@ -4,9 +4,9 @@ h4 {
     background: ghostwhite;
 }
 
-/*.border-style {*/
-/*border: 10px deepskyblue;*/
-/*}*/
+.border-style {
+border: 10px deepskyblue;
+}
 .part {
     display: inline-block;
     width: 500px;

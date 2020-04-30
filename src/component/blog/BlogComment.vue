@@ -67,8 +67,8 @@
 </template>
 
 <script>
-    import {AxiosService} from "../../_services/axiosService";
-    import {ConvertService} from "../../_services/convertService";
+    import {AxiosService} from "../../_services/axios.service";
+    import {ConvertService} from "../../_services/convert.service";
 
     let axiosService = new AxiosService();
     let convertService = new ConvertService();

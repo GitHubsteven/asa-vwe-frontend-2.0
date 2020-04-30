@@ -95,13 +95,13 @@
 
 <script>
     //引入接口辅助类
-    import {ApiService} from '../../_services/apiService.js'
-    import {AxiosService} from "../../_services/axiosService";
-    import {ConvertService} from "../../_services/convertService";
+    import {BlogService} from '../../_services/blog.service.js'
+    import {AxiosService} from "../../_services/axios.service";
+    import {ConvertService} from "../../_services/convert.service";
     import BlogComment from "./BlogComment.vue"
     import * as _ from "lodash"
     //定义一个对象
-    const apiService = new ApiService();
+    const apiService = new BlogService();
     let axiosService = new AxiosService();
 
     let convertService = new ConvertService();

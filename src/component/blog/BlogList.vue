@@ -67,10 +67,10 @@
 
 <script>
     //引入接口辅助类
-    import {ApiService} from "../../_services/apiService";
-    import {ConvertService} from "../../_services/convertService";
+    import {BlogService} from "../../_services/blog.service";
+    import {ConvertService} from "../../_services/convert.service";
     //定义一个对象
-    const apiService = new ApiService();
+    const apiService = new BlogService();
     let convertService = new ConvertService();
 
     export default {
