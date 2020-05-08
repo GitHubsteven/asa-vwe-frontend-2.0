@@ -3,7 +3,8 @@
         <div>
             <el-container style="height: 100%; min-height: 700px">
                 <el-header>
-                    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router background-color="#000000"
+                    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router
+                             background-color="#000000"
                              @select="handleSelect">
                         <el-menu-item index="/blog-list">
                             Blogs
@@ -12,7 +13,28 @@
                             Login
                         </el-menu-item>
                         <el-menu-item v-if="user != null" style="float: right">
-                            <el-link @click="logout()">Logout</el-link>
+                            <el-dropdown>
+                                  <span class="el-dropdown-link">
+                                    {{user.username}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>
+                                        <el-link @click="logout()">Logout</el-link>
+                                    </el-dropdown-item>
+                                    <el-dropdown-item>language</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </el-menu-item>
+                        <el-menu-item v-if="user != null" style="float: right">
+                            <el-dropdown>
+                                  <span class="el-dropdown-link">
+                                    Api<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>Spring</el-dropdown-item>
+                                    <el-dropdown-item>Express</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
                         </el-menu-item>
                     </el-menu>
                 </el-header>

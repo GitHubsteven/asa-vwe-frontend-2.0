@@ -90,8 +90,7 @@
         methods: {
             getBlogs(searchOpt) {
                 //调用接口获取数据，并且更新vue页面数据
-                apiService.getBlogs(searchOpt).then((resp) => {
-                    console.log(resp);
+                apiService.listBlogs(searchOpt).then((resp) => {
                     this.blogs = resp.items;
                     this.count = resp.count;
                 });

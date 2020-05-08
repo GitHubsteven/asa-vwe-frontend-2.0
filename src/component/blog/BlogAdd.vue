@@ -83,15 +83,11 @@
         methods: {
             create() {
                 blogService.createBlog(this.blog).then(res => {
-                    if (!res._id) {
-                        window.alert("res:" + res.message);
-                    } else {
-                        //页面跳转
-                        this.$router.push({
-                            path: '/blog-list',
-                            name: 'BlogList'
-                        })
-                    }
+                    //页面跳转
+                    this.$router.push({
+                        path: '/blog-list',
+                        name: 'BlogList'
+                    })
                 })
             },
             convertMarkdown(context) {

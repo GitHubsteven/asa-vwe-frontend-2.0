@@ -53,7 +53,6 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (!valid) return false;
-                    //todo 实现登录的业务
                     this.login(this.userLoginForm)
                 });
             },
