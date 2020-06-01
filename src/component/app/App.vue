@@ -4,7 +4,6 @@
             <el-container style="height: 100%; min-height: 700px">
                 <el-header>
                     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router
-                             background-color="#000000"
                              @select="handleSelect">
                         <el-menu-item index="/blog-list">
                             Blogs
@@ -39,11 +38,12 @@
                     </el-menu>
                 </el-header>
                 <el-main>
+                    <div v-if="true" class="evn_express"><strong>Express</strong></div>
                     <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
                     <router-view></router-view>
                 </el-main>
                 <div class="line"></div>
-                <el-footer class="footer_context"><label>All CopyRight@asa.x.com</label></el-footer>
+                <el-footer class="footer_context"><label>© 2020 imango.top |赣ICP备20006372号-1</label></el-footer>
             </el-container>
         </div>
     </div>

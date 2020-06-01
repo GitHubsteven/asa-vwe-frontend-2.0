@@ -5,8 +5,9 @@ h4 {
 }
 
 .border-style {
-border: 10px deepskyblue;
+    border: 10px deepskyblue;
 }
+
 .part {
     display: inline-block;
     width: 500px;
@@ -42,4 +43,12 @@ html {
 
 body {
     min-height: calc(95%);
+}
+
+.env_spring {
+    color: aquamarine;
+}
+
+.evn_express {
+    color: bisque;
 }
