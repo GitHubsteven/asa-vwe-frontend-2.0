@@ -49,8 +49,6 @@
 <script>
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
-    // es modules
-    import Editor from '@tinymce/tinymce-vue';
 
     let convertService = new ConvertService();
     let blogService = new BlogService();
@@ -58,9 +56,7 @@
     let blogTmp = {};
     export default {
         name: "blog-add",
-        components: {
-            'editor': Editor
-        },
+        components: {},
         data: function () {
             return {
                 blog: {

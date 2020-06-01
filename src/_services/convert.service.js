@@ -1,6 +1,6 @@
-import {Converter} from 'showdown';
+import {showdown} from '../_wraps/markdown';
 
-let converter = new Converter({tables: true});
+let converter = new showdown.Converter({tables: true});
 
 export class ConvertService {
     constructor() {
