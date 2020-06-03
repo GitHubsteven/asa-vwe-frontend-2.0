@@ -49,7 +49,6 @@
     import {ConvertService} from "../../_services/convert.service";
     import {mapState, mapActions} from "vuex";
 
-
     let convertService = new ConvertService();
     let blogService = new BlogService();
 
@@ -141,13 +140,20 @@
                 return null;
             }
         },
-
-        mounted() {
+        //初始化的时候
+        created() {
             this.init();
-            window.addEventListener("keydown", function (ev) {
-                let key = ev.key;
-                console.log("------>{}", key)
-            })
+        },
+        //渲染后
+        mounted() {
+            document.onkeydown = (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    //  执行save方法
+                    this.saveDraft();
+                    // 阻止默认事件
+                    e.preventDefault()
+                }
+            }
         },
         activated() {
             this.init();

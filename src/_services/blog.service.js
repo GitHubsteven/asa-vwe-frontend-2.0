@@ -42,4 +42,12 @@ export class BlogService {
         let url = (blogs.prefix + blogs.update).replace(":id", blog._id);
         return axiosService.put(url, blog);
     }
+
+    getUserName() {
+        let userJson = localStorage.getItem("user");
+        if (userJson) {
+            let user = JSON.parse(userJson);
+            blog.author = user.username;
+        }
+    }
 }

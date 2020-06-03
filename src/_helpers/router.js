@@ -7,6 +7,7 @@ import BlogAdd from '../component/blog/BlogAdd'
 import BlogList from '../component/blog/BlogList'
 import BlogView from '../component/blog/BlogView'
 import BlogUpdate from '../component/blog/BlogUpdate'
+import AboutMe from '../component/home/AboutMe'
 
 
 Vue.use(Router);
@@ -36,6 +37,11 @@ export const router = new Router({
             path: '/blog-update',
             name: 'BlogUpdate',
             component: BlogUpdate
+        },
+        {
+            path: '/about-me',
+            name: 'AboutMe',
+            component: AboutMe
         },
         // otherwise redirect to home
         {path: '*', redirect: '/'}

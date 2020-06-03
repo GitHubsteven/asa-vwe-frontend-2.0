@@ -27,11 +27,12 @@
                         <el-card class="box-card" body-style="{ padding: '10px',margin-top:10px }">
                             <div slot="header" class="clearfix">
                                 <el-link type="primary" @click="detail(blog)">{{blog.title}}</el-link>
-                                <el-button style="float: right; padding: 3px 2px;color: red" type="text"
+                                <el-button v-show="state" style="float: right; padding: 3px 2px;color: red" type="text"
                                            @click="del(blog)">
                                     <i class="el-icon-delete"></i>
                                 </el-button>
-                                <el-button style="float: right; padding: 3px 2px;" type="text" @click="update(blog)">
+                                <el-button v-show="state" style="float: right; padding: 3px 2px;" type="text"
+                                           @click="update(blog)">
                                     <i class="el-icon-edit"></i>
                                 </el-button>
                             </div>
@@ -69,6 +70,9 @@
     //引入接口辅助类
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
+    import {mapState} from "vuex";
+
+
     //定义一个对象
     const apiService = new BlogService();
     let convertService = new ConvertService();
@@ -166,6 +170,11 @@
         //在vue被渲染的时候调用方法
         mounted() {
             this.getBlogs(this.searchers);
+        },
+        computed: {
+            ...mapState({
+                status: state => state.account.status,
+            })
         }
     }
 </script>

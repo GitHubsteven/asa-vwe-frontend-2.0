@@ -161,13 +161,19 @@
                 }
             },
         },
-
-        mounted() {
+        created() {
             this.init();
-            window.addEventListener("keydown", function (ev) {
-                let key = ev.key;
-                console.log("------>{}", key)
-            })
+        },
+        mounted() {
+
+            document.onkeydown = (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    //  执行save方法
+                    this.saveDraft();
+                    // 阻止默认事件
+                    e.preventDefault()
+                }
+            }
         },
         activated() {
             this.init();

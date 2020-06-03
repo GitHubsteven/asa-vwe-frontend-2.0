@@ -8,6 +8,9 @@
                         <el-menu-item index="/blog-list">
                             Blogs
                         </el-menu-item>
+                        <el-menu-item index="/about-me">
+                            About Me
+                        </el-menu-item>
                         <el-menu-item v-if="user == null" index="/login" style="float: right">
                             Login
                         </el-menu-item>
@@ -65,7 +68,6 @@
 
         },
         methods: {
-            // ...mapActions("account", ["logout"]),
             ...mapActions({
                 clearAlert: 'alert/clear',
                 logout: 'account/logout'
