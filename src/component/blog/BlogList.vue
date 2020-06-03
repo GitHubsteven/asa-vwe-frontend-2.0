@@ -144,10 +144,10 @@
             },
             update(blog) {
                 this.$router.push({
-                    path: "/blog-add",
-                    name: "BlogAdd",
+                    path: "/blog-update",
+                    name: "BlogUpdate",
                     query: {
-                        blog: blog
+                        blogId: blog._id
                     }
                 })
             },

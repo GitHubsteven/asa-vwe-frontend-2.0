@@ -1,6 +1,6 @@
 import {showdown} from '../_wraps/markdown';
 
-let converter = new showdown.Converter({tables: true, extensions: ['flowchart','mathjax']});
+let converter = new showdown.Converter({tables: true, extensions: ['flowchart', 'mathjax']});
 
 export class ConvertService {
     constructor() {
@@ -91,5 +91,17 @@ export class ConvertService {
             }
         }
         return firstLayerComments;
+    }
+
+    /**
+     * 生成sessionStorage的保存的key
+     * @param scope 作用域：update | add
+     * @param id blog.id，可以为空
+     * @param name 命名，默认为vo-draft
+     * @returns {*}
+     */
+    buildSessionKey(scope, id, name) {
+        if (!name) name = "vo_draft";
+        return scope + id + name;
     }
 }

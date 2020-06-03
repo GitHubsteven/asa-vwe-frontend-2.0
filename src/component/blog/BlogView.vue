@@ -102,7 +102,7 @@
     import * as _ from "lodash"
 
     //定义一个对象
-    const apiService = new BlogService();
+    const blogService = new BlogService();
     let axiosService = new AxiosService();
 
     let convertService = new ConvertService();
@@ -166,7 +166,7 @@
                 this.getComments(id);
             },
             getBlog(id) {
-                apiService.viewBlog(id).then(resp => {
+                blogService.viewBlog(id).then(resp => {
                     console.log(resp);
                     _.extend(this.blog, resp);
                 });

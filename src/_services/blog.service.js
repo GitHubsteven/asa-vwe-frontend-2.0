@@ -23,6 +23,11 @@ export class BlogService {
 
     //插入
     createBlog(blog) {
+        let userJson = localStorage.getItem("user");
+        if (userJson) {
+            let user = JSON.parse(userJson);
+            blog.author = user.username;
+        }
         return axiosService.post(blogs.prefix + blogs.create, blog);
     }
 
@@ -34,7 +39,7 @@ export class BlogService {
 
     //更新，调用put方法，表示修改数据
     update(blog) {
-        let url = (blogs.prefix + blogs.update).replace(":id", id);
+        let url = (blogs.prefix + blogs.update).replace(":id", blog._id);
         return axiosService.put(url, blog);
     }
 }
