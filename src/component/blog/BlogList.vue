@@ -27,11 +27,12 @@
                         <el-card class="box-card" body-style="{ padding: '10px',margin-top:10px }">
                             <div slot="header" class="clearfix">
                                 <el-link type="primary" @click="detail(blog)">{{blog.title}}</el-link>
-                                <el-button v-show="state" style="float: right; padding: 3px 2px;color: red" type="text"
+                                <el-button v-show="status.loggedIn" style="float: right; padding: 3px 2px;color: red"
+                                           type="text"
                                            @click="del(blog)">
                                     <i class="el-icon-delete"></i>
                                 </el-button>
-                                <el-button v-show="state" style="float: right; padding: 3px 2px;" type="text"
+                                <el-button v-show="status.loggedIn" style="float: right; padding: 3px 2px;" type="text"
                                            @click="update(blog)">
                                     <i class="el-icon-edit"></i>
                                 </el-button>
@@ -70,7 +71,7 @@
     //引入接口辅助类
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
-    import {mapState} from "vuex";
+    import {mapState} from "vuex"
 
 
     //定义一个对象
