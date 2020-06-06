@@ -8,7 +8,7 @@ function vFetch(url, requestOptions) {
     if (authHeader()) {
         _.extend(requestOptions.headers, authHeader());
     }
-    let apiEnvFinal = apiEnvStr ? apiEnv.express : apiEnvStr;
+    let apiEnvFinal = apiEnvStr ? apiEnvStr : apiEnv.express;
     // reset url with apiEnv
     url = url.replace("$apiEnv", apiEnvFinal);
     return fetch(url, requestOptions);
