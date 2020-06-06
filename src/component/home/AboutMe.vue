@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-bottom: 1%">
         <div>
             <label>name</label>
             <span>rongbin.xie</span>
