@@ -27,11 +27,13 @@
                         <el-card class="box-card" body-style="{ padding: '10px',margin-top:10px }">
                             <div slot="header" class="clearfix">
                                 <el-link type="primary" @click="detail(blog)">{{blog.title}}</el-link>
-                                <el-button style="float: right; padding: 3px 2px;color: red" type="text"
+                                <el-button v-show="status.loggedIn" style="float: right; padding: 3px 2px;color: red"
+                                           type="text"
                                            @click="del(blog)">
                                     <i class="el-icon-delete"></i>
                                 </el-button>
-                                <el-button style="float: right; padding: 3px 2px;" type="text" @click="update(blog)">
+                                <el-button v-show="status.loggedIn" style="float: right; padding: 3px 2px;" type="text"
+                                           @click="update(blog)">
                                     <i class="el-icon-edit"></i>
                                 </el-button>
                             </div>
@@ -67,10 +69,13 @@
 
 <script>
     //引入接口辅助类
-    import {ApiService} from "../../_services/apiService";
-    import {ConvertService} from "../../_services/convertService";
+    import {BlogService} from "../../_services/blog.service";
+    import {ConvertService} from "../../_services/convert.service";
+    import {mapState} from "vuex"
+
+
     //定义一个对象
-    const apiService = new ApiService();
+    const apiService = new BlogService();
     let convertService = new ConvertService();
 
     export default {
@@ -90,8 +95,7 @@
         methods: {
             getBlogs(searchOpt) {
                 //调用接口获取数据，并且更新vue页面数据
-                apiService.getBlogs(searchOpt).then((resp) => {
-                    console.log(resp);
+                apiService.listBlogs(searchOpt).then((resp) => {
                     this.blogs = resp.items;
                     this.count = resp.count;
                 });
@@ -145,10 +149,10 @@
             },
             update(blog) {
                 this.$router.push({
-                    path: "/blog-add",
-                    name: "BlogAdd",
+                    path: "/blog-update",
+                    name: "BlogUpdate",
                     query: {
-                        blog: blog
+                        blogId: blog._id
                     }
                 })
             },
@@ -167,6 +171,11 @@
         //在vue被渲染的时候调用方法
         mounted() {
             this.getBlogs(this.searchers);
+        },
+        computed: {
+            ...mapState({
+                status: state => state.account.status,
+            })
         }
     }
 </script>

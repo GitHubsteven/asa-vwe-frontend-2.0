@@ -38,7 +38,7 @@
         <el-row style="margin-top: 10px">
             <el-col :span="23" :offset="1">
                 <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
-                <el-button type="primary" @click="create()">Create</el-button>
+                <el-button type="primary" @click="update()">Update</el-button>
             </el-col>
         </el-row>
     </div>
@@ -47,19 +47,24 @@
 <script>
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
-    import {mapState, mapActions} from "vuex";
+    import * as _ from "lodash";
+
 
     let convertService = new ConvertService();
     let blogService = new BlogService();
 
+    let blogTmp = {};
     export default {
-        name: "blog-add",
+        name: "blog-update",
         components: {},
         data: function () {
             return {
                 blog: {
                     title: null,
                     context: null,
+                    author: null,
+                    createTime: new Date(),
+                    id: null
                 },
                 isEditable: true,
                 isVisual: false,
@@ -72,27 +77,56 @@
             }
         },
         methods: {
-            create() {
-                blogService.createBlog(this.blog).then(res => {
-                    //页面跳转
-                    this.clearDraft();
-                    this.$router.push({
-                        path: '/blog-list',
-                        name: 'BlogList'
-                    })
-                })
-            },
             convertMarkdown(context) {
                 return convertService.makeHtml(context);
             },
 
             init() {
-                let draft = this.getDraft();
-                if (draft) {
-                    Object.assign(this.blog, draft);
-                }
+                //init the layer
                 this.layout.editor_span = 20;
                 this.layout.shower_span = 0;
+                let blogId = this.$route.query.blogId;
+                //init from the session draft if exists
+                let draft = sessionStorage.getItem(convertService.buildSessionKey("update", blogId, null));
+                if (draft) {
+                    let draftBlog = JSON.parse(draft);
+                    Object.assign(this.blog, draftBlog);
+                    return;
+                }
+                //init from xhr request if session's draft not exist
+                if (blogId) {
+                    this.getBlog(blogId);
+                }
+            },
+
+            getBlog(id) {
+                blogService.viewBlog(id).then(resp => {
+                    _.extend(this.blog, resp);
+                    _.extend(this.blogTmp, resp);
+                });
+            },
+
+            update() {
+                let oldBlog = blogTmp;
+                if (oldBlog.title === this.blog.title && oldBlog.context === this.blog.context && oldBlog.author === this.blog.author) {
+                    window.alert("there is no change!");
+                    return;
+                }
+                blogService.update(this.blog).then((resp) => {
+                    if (!resp) {
+                        window.alert("update failed!");
+                    }
+                    this.$router.push({
+                        path: '/blog-view',
+                        name: 'BlogView',
+                        query: {
+                            blogId: this.blog._id
+                        }
+                    })
+                }, (error) => {
+                    console.log(error);
+                    window.alert("update failed!");
+                });
             },
             onlyEditor() {
                 this.renderEditor(true, 20, false, 0);
@@ -120,32 +154,18 @@
              */
             saveDraft() {
                 if (this.blog.context || this.blog.title) {
-                    sessionStorage.setItem(convertService.buildSessionKey("add", null, null), JSON.stringify(this.blog));
+                    sessionStorage.setItem(convertService.buildSessionKey("update", this.blog._id, null), JSON.stringify(this.blog));
                     alert("save successfully!");
                 } else {
                     alert("blog can not be empty!");
                 }
             },
-            /**
-             * 删除草稿
-             */
-            clearDraft() {
-                sessionStorage.removeItem(convertService.buildSessionKey("add", null, null));
-            },
-            getDraft() {
-                let draftJson = sessionStorage.getItem(convertService.buildSessionKey("add", null, null));
-                if (draftJson) {
-                    return JSON.parse(draftJson);
-                }
-                return null;
-            }
         },
-        //初始化的时候
         created() {
             this.init();
         },
-        //渲染后
         mounted() {
+
             document.onkeydown = (e) => {
                 if ((e.ctrlKey || e.metaKey) && e.key === 's') {
                     //  执行save方法

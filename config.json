@@ -1,4 +1,8 @@
 {
   "port": 9800,
-  "apiPort": 9090
+  "apiPort": {
+    "express": 9090,
+    "spring": 9190
+  },
+  "apiUrl": "/api/$apiEnv"
 }

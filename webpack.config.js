@@ -5,7 +5,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const {VueLoaderPlugin} = require('vue-loader');
 const config = require("./config.json");
 
-
 module.exports = {
     entry: {
         main: './src/index.js'
@@ -93,18 +92,22 @@ module.exports = {
         historyApiFallback: true,
         port: config.port,
         contentBase: path.join(__dirname, "dist"),
-        proxy: {
-            '/api': {
-                target: 'http://localhost:' + config.apiPort,
+        proxy: [
+            {
+                context: ['/api/express'],
+                target: 'http://localhost:' + config.apiPort.express,
                 changeOrigin: true,
-                pathRewrite: {'/api': ''}
+                pathRewrite: {'/api/express': ''}
+            },
+            {
+                context: ['/api/spring'],
+                target: 'http://localhost:' + config.apiPort.spring,
+                changeOrigin: true,
+                pathRewrite: {'/api/spring': ''}
             }
-        }
+        ]
     },
     externals: {
         // global app config object
-        config: JSON.stringify({
-            apiUrl: 'http://localhost:' + config.port
-        })
     }
 };

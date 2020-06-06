@@ -6,6 +6,8 @@ import RegisterPage from '../component/register/Register'
 import BlogAdd from '../component/blog/BlogAdd'
 import BlogList from '../component/blog/BlogList'
 import BlogView from '../component/blog/BlogView'
+import BlogUpdate from '../component/blog/BlogUpdate'
+import AboutMe from '../component/home/AboutMe'
 
 
 Vue.use(Router);
@@ -31,6 +33,16 @@ export const router = new Router({
             name: 'BlogAdd',
             component: BlogAdd
         },
+        {
+            path: '/blog-update',
+            name: 'BlogUpdate',
+            component: BlogUpdate
+        },
+        {
+            path: '/about-me',
+            name: 'AboutMe',
+            component: AboutMe
+        },
         // otherwise redirect to home
         {path: '*', redirect: '/'}
     ]
@@ -41,8 +53,7 @@ router.beforeEach((to, from, next) => {
     const publicPages = ['/login', '/register'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
-    //authRequired && !loggedIn
-    if (false) {
+    if (authRequired && !loggedIn) {
         return next('/login');
     }
 
