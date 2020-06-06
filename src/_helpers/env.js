@@ -1,7 +1,7 @@
-const API_ENV = {
+const apiEnv = {
     key: "vwe_env",
     express: "express",
     spring: "spring"
 };
 
-export {API_ENV};
+export {apiEnv};

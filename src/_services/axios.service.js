@@ -1,13 +1,17 @@
 //导入axios
 import axios from 'axios'
 import {authHeader} from "../_helpers";
-//定义主机，定义别的主机可能会报跨域错误
-const API_URL = "/api";
+import {apiEnv} from "../_helpers/env";
+// 定义主机，定义别的主机可能会报跨域错误
+let apiEnvStr = localStorage.getItem(apiEnv.key);
+// default is express
+apiEnvStr = apiEnvStr ? apiEnvStr : apiEnv.express;
 
 axios.interceptors.request.use(function (config) {
     if (authHeader().Authorization) {
         config.headers['Authorization'] = authHeader().Authorization;
     }
+    config.baseURL = "/api/" + apiEnvStr;
     return config;
 }, (err => {
     return Promise.reject(err);
@@ -25,8 +29,7 @@ export class AxiosService {
      * @param paramBody 请求参数消息体
      */
     post(path, paramBody) {
-        const url = API_URL + path;
-        return axios.post(url, paramBody).then(resp => resp.data);
+        return axios.post(path, paramBody).then(resp => resp.data);
     }
 
     /**
@@ -35,8 +38,7 @@ export class AxiosService {
      * @param path 请求路径，格式为/x/y | /x/y:id | /x/y?a=1&b=2
      */
     get(path) {
-        const url = API_URL + path;
-        return axios.get(url).then((resp) => resp.data);
+        return axios.get(path).then((resp) => resp.data);
     }
 
     /**
@@ -46,8 +48,7 @@ export class AxiosService {
      * @param paramBody 请求参数消息体
      */
     put(path, paramBody) {
-        const url = API_URL + path;
-        return axios.put(url, paramBody).then(resp => resp.data);
+        return axios.put(path, paramBody).then(resp => resp.data);
     }
 
     /**
@@ -57,7 +58,6 @@ export class AxiosService {
      * @returns
      */
     delete(path) {
-        const url = API_URL + path;
-        return axios.delete(url).then(resp => resp.data);
+        return axios.delete(path).then(resp => resp.data);
     }
 }

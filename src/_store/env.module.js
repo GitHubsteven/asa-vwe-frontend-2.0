@@ -1,17 +1,17 @@
-import {API_ENV} from "../_helpers/env"
+import {apiEnv} from "../_helpers/env"
 
 //define a state
-const envStr = localStorage.getItem(API_ENV.key);
+const envStr = localStorage.getItem(apiEnv.key);
 const state = envStr
   ? {apiEnv: envStr}
-  : {apiEnv: API_ENV.express};
+  : {apiEnv: apiEnv.express};
 
 const mutations = {
     switchTo(state, vwe_env) {
-        if (API_ENV.express !== vwe_env && API_ENV.spring !== vwe_env) {
+        if (apiEnv.express !== vwe_env && apiEnv.spring !== vwe_env) {
             throw new Error("env: " + vwe_env + " not support");
         }
-        localStorage.setItem(API_ENV.key, vwe_env);
+        localStorage.setItem(apiEnv.key, vwe_env);
         state.apiEnv = vwe_env;
     },
 
@@ -28,6 +28,7 @@ const actions = {
      */
     switchTo({commit, dispatch}, vwe_env) {
         commit('switchTo', vwe_env);
+        location.reload();
     },
 
     /**
