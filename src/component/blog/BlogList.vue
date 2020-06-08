@@ -3,10 +3,13 @@
         <el-row>
             <el-col :span="20" :offset="1">
                 <el-row>
-                    <el-col :span="3">
+                    <el-col :span="6">
                         <div v-show="status.loggedIn">
                             <router-link to="/blog-add">
                                 <el-button type="primary">Add</el-button>
+                            </router-link>
+                            <router-link to="/category">
+                                <el-button type="primary">category</el-button>
                             </router-link>
                         </div>
                     </el-col>
@@ -63,7 +66,6 @@
                 </el-row>
             </el-col>
         </el-row>
-
     </div>
 </template>
 
