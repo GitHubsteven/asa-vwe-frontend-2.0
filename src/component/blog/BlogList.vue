@@ -14,7 +14,7 @@
                         </div>
                     </el-col>
 
-                    <el-col :span="5" :offset="`${status.loggedIn? 11: 14}`">
+                    <el-col :span="5" :offset="status.loggedIn? 11: 14">
                         <div>
                             <el-input placeholder="input content" v-model="searchers.title">
                                 <template slot="prepend">title</template>

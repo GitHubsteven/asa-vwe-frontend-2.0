@@ -72,6 +72,7 @@
             }
         },
         methods: {
+            ...mapActions(['alert/success', 'alert/error']),
             create() {
                 blogService.createBlog(this.blog).then(res => {
                     //页面跳转
