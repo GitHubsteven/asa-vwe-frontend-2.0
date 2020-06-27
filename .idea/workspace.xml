@@ -2,11 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="正常运行新项目">
-      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" beforeDir="false" />
+      <change afterPath="F:/work_place1/asa-vwe-express/src/_controller/category/category.controller.js" afterDir="false" />
+      <change afterPath="F:/work_place1/asa-vwe-express/src/_service/category/category.service.js" afterDir="false" />
+      <change afterPath="F:/work_place1/asa-vwe-express/src/models/category.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/_services/category.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
+      <change beforePath="F:/work_place1/asa-vwe-express/package-lock.json" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/package-lock.json" afterDir="false" />
+      <change beforePath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" afterDir="false" />
+      <change beforePath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" afterDir="false" />
+      <change beforePath="F:/work_place1/asa-vwe-express/src/server/server.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/asa-vwe-frontend-2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/asa-vwe-frontend-2.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/ListBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/ListBlog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/ViewBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/ViewBlog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_helpers/vwe-url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_helpers/vwe-url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/app/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/category/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/Category.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +45,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -37,20 +56,45 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="H:\private\asa-vwe-frontend-2.0\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="D:\WebStorm 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common\lang" />
+      <recent name="H:\private\asa-vwe-frontend-2.0\src\component" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\img" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\css" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\component\home" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\component\register" />
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component\login" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component" />
-    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="vwe-express-parent" type="js.build_tools.npm">
+      <package-json value="F:/work_place1/asa-vwe-express/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -69,6 +113,13 @@
       <workItem from="1585449365301" duration="2003000" />
       <workItem from="1585626737240" duration="13845000" />
       <workItem from="1585710386875" duration="1177000" />
+      <workItem from="1585995442563" duration="2538000" />
+      <workItem from="1592131567794" duration="2790000" />
+      <workItem from="1592363653479" duration="3493000" />
+      <workItem from="1592658343524" duration="4689000" />
+      <workItem from="1592708300457" duration="1731000" />
+      <workItem from="1592710168862" duration="6569000" />
+      <workItem from="1593048599875" duration="11956000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -105,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584698663835</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="正常运行新项目">
+      <created>1585758368369</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585758368369</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

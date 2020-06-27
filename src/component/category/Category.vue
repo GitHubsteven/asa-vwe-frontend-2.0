@@ -2,7 +2,7 @@
     <div>
         <el-row>
             <el-col>
-                <el-tag>Existed Categories</el-tag>
+                <el-tag>{{$t('lang.CATEGORY_LIST')}}</el-tag>
             </el-col>
         </el-row>
         <div v-for="category in categories" v-bind:key="category.id" style="margin-top: 10px">
@@ -19,6 +19,18 @@
                 </el-col>
             </el-row>
         </div>
+        <br>
+        <el-row>
+            <el-col :span="5">
+                <el-input placeholder="请输入内容" v-model="addedCate.name">
+                    <template slot="prepend">新增分类</template>
+                </el-input>
+            </el-col>
+            <el-col :span="2">
+                <el-button v-show="true" type="success" icon="el-icon-check" circle
+                           @click="addCate()"/>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -28,6 +40,7 @@
         name: "Category",
         data() {
             return {
+                cateNum: 2,
                 categories: [
                     {
                         id: 1,
@@ -38,7 +51,10 @@
                         name: "mysql",
                         isEditable: false
                     }
-                ]
+                ],
+                addedCate: {
+                    name: null
+                }
             }
         },
         methods: {
@@ -53,9 +69,10 @@
             deleteCate(category) {
                 alert("delete category[id]: " + category.id);
             },
-
-            addCate(category) {
-                alert("add category[name]: " + category.name);
+            addCate() {
+                // clear the added the refresh the existed category list
+                this.categories.push({name: this.addedCate.name, id: this.cateNum++});
+                this.addedCate.name = null;
             }
         }
     }

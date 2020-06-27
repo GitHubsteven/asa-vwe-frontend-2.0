@@ -7,14 +7,9 @@
                     <el-tag type="info">{{this.blog.author}}</el-tag>
                     <el-tag type="info">{{this.blog.createTime}}</el-tag>
                     <hr/>
-                    <el-input
-                            type="textarea"
-                            v-html="convertMarkdown(blog.context)"
-                            maxlength="3000"
-                            show-word-limit
-                            :autosize="{ minRows: 50, maxRows: 300 }"
-                    >
-                    </el-input>
+                    <div  v-html="convertMarkdown(blog.context)">
+
+                    </div>
                 </div>
                 <div>
 

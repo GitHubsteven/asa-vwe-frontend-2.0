@@ -1,4 +1,11 @@
-export {blogs, users, prefix};
+export {blogs, users, prefix, categories};
+
+let prefix = {
+    blogs: "/blogs",
+    users: "/users",
+    categories: "/categories"
+};
+
 let blogs = {
     prefix: "/blogs",
     list: "/list",
@@ -19,7 +26,11 @@ let users = {
     delete: "/:id"
 };
 
-let prefix = {
-    blogs: "/blogs",
-    users: "/users"
+let categories = {
+    prefix: "/categories",
+    list: "/list",
+    getById: "/:id",
+    update: "/:id",
+    delete: "/:id",
+    create: "/"
 };
