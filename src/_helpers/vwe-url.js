@@ -28,7 +28,6 @@ let users = {
 
 let categories = {
     prefix: "/categories",
-    list: "/list",
     getById: "/:id",
     update: "/:id",
     delete: "/:id",
