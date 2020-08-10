@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="正常运行新项目">
-      <change afterPath="F:/work_place1/asa-vwe-express/src/_controller/category/category.controller.js" afterDir="false" />
-      <change afterPath="F:/work_place1/asa-vwe-express/src/_service/category/category.service.js" afterDir="false" />
-      <change afterPath="F:/work_place1/asa-vwe-express/src/models/category.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/_services/category.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/lang/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/lang/zh.js" afterDir="false" />
-      <change beforePath="F:/work_place1/asa-vwe-express/package-lock.json" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/package-lock.json" afterDir="false" />
+    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="">
+      <change afterPath="F:/work_place1/asa-vwe-express/src/_controller/common/common.controller.js" afterDir="false" />
+      <change afterPath="F:/work_place1/asa-vwe-express/src/_service/common/common.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/_services/common.service.js" afterDir="false" />
       <change beforePath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" afterDir="false" />
-      <change beforePath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" afterDir="false" />
       <change beforePath="F:/work_place1/asa-vwe-express/src/server/server.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/asa-vwe-frontend-2.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/asa-vwe-frontend-2.0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/_helpers/vwe-url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_helpers/vwe-url.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/app/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/category/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/Category.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,6 +109,9 @@
       <workItem from="1592708300457" duration="1731000" />
       <workItem from="1592710168862" duration="6569000" />
       <workItem from="1593048599875" duration="11956000" />
+      <workItem from="1593275547321" duration="167000" />
+      <workItem from="1596938142660" duration="15000" />
+      <workItem from="1596949636323" duration="10060000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -163,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585758368369</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="backup code">
+      <created>1593275687991</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1593275687991</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +187,8 @@
     <MESSAGE value="修改vue component names" />
     <MESSAGE value="修改和增加eslint的一些异常" />
     <MESSAGE value="正常运行新项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="正常运行新项目" />
+    <MESSAGE value="backup code" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585710398518">

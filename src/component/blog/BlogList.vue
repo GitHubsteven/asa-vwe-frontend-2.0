@@ -44,7 +44,7 @@
                                 {{createSyllabus(blog.context)}}
                             </div>
                             <div class="text item">
-                                <el-tag type="info">test</el-tag>
+                                <el-tag type="info">{{blog.category ? blog.category:"-"}}</el-tag>
                                 <el-tag type="info">{{blog.author}}</el-tag>
                                 <el-tag type="info">{{blog.createTime}}</el-tag>
                             </div>

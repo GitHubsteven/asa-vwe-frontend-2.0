@@ -58,6 +58,9 @@
 <script>
     import {router} from '../../_helpers/router.js'
     import {mapActions, mapState} from "vuex"
+    import {CommonService} from "../../_services/common.service";
+
+    let commonService = new CommonService();
 
     export default {
         name: "App",
@@ -106,7 +109,15 @@
                         type: 'info',
                     });
                 });
+            },
+            init() {
+                commonService.settings().then((settings) => {
+                    localStorage.setItem("vwe-setting", JSON.stringify(settings));
+                })
             }
+        },
+        mounted() {
+            this.init()
         },
         computed: {
             ...mapState({

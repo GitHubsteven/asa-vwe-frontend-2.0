@@ -60,6 +60,7 @@
                 blog: {
                     title: null,
                     context: null,
+                    category: "test"
                 },
                 isEditable: true,
                 isVisual: false,
