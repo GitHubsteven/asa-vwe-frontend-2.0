@@ -12,7 +12,7 @@ export class CategoryService {
 
 //定义一个方法查询
     listCategories() {
-        return axiosService.get(categories.prefix + categories.list);
+        return axiosService.get(categories.prefix);
     }
 
     //查询
