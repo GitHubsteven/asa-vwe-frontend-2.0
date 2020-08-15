@@ -37,10 +37,30 @@
         </el-row>
         <el-row style="margin-top: 10px">
             <el-col :span="23" :offset="1">
+                <el-select
+                        v-model="blog.categories"
+                        multiple
+                        filterable
+                        collapse-tags
+                        multiple-limit="3"
+                        default-first-option
+                        placeholder="请选择文章类型">
+                    <el-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="23" :offset="1">
                 <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
                 <el-button type="primary" @click="create()">Create</el-button>
             </el-col>
         </el-row>
+
     </div>
 </template>
 
@@ -60,7 +80,7 @@
                 blog: {
                     title: null,
                     context: null,
-                    category: "test"
+                    categories: []
                 },
                 isEditable: true,
                 isVisual: false,
@@ -69,12 +89,14 @@
                     editor_offset: 1,
                     shower_span: 10,
                     shower_offset: 1
-                }
+                },
+                options: []
             }
         },
         methods: {
             ...mapActions(['alert/success', 'alert/error']),
             create() {
+
                 blogService.createBlog(this.blog).then(res => {
                     //页面跳转
                     this.clearDraft();
@@ -95,6 +117,13 @@
                 }
                 this.layout.editor_span = 20;
                 this.layout.shower_span = 0;
+                let vweSetting = localStorage.getItem("vwe-setting");
+                if (vweSetting) {
+                    let categories = JSON.parse(vweSetting).categories;
+                    categories.forEach(cate => {
+                        this.options.push({value: cate, label: cate});
+                    })
+                }
             },
             onlyEditor() {
                 this.renderEditor(true, 20, false, 0);

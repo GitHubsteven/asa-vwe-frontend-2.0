@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="">
-      <change afterPath="F:/work_place1/asa-vwe-express/src/_controller/common/common.controller.js" afterDir="false" />
-      <change afterPath="F:/work_place1/asa-vwe-express/src/_service/common/common.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/_services/common.service.js" afterDir="false" />
-      <change beforePath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/_helpers/vwe-url.js" afterDir="false" />
-      <change beforePath="F:/work_place1/asa-vwe-express/src/server/server.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/server/server.js" afterDir="false" />
+    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="增加配置接口">
+      <change beforePath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/_helpers/vwe-url.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_helpers/vwe-url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/app/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/category/Category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/category/Category.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +105,8 @@
       <workItem from="1593275547321" duration="167000" />
       <workItem from="1596938142660" duration="15000" />
       <workItem from="1596949636323" duration="10060000" />
+      <workItem from="1597022323267" duration="2594000" />
+      <workItem from="1597507142660" duration="3419000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -162,7 +157,28 @@
       <option name="project" value="LOCAL" />
       <updated>1593275687991</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="增加配置接口">
+      <created>1597022356934</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597022356934</updated>
+    </task>
+    <task id="LOCAL-00009" summary="增加配置接口">
+      <created>1597022419222</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1597022419222</updated>
+    </task>
+    <task id="LOCAL-00010" summary="修改路径path">
+      <created>1597507673302</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1597507673302</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +204,9 @@
     <MESSAGE value="修改和增加eslint的一些异常" />
     <MESSAGE value="正常运行新项目" />
     <MESSAGE value="backup code" />
-    <option name="LAST_COMMIT_MESSAGE" value="backup code" />
+    <MESSAGE value="增加配置接口" />
+    <MESSAGE value="修改路径path" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改路径path" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585710398518">
