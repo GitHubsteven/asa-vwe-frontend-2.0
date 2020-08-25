@@ -10,6 +10,8 @@ import VueI18n from 'vue-i18n'
 // setup fake backend
 Vue.use(ElementUI);
 Vue.use(VueI18n);
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts;
 
 const i18n = new VueI18n({
     locale: 'zh-CN',    // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale

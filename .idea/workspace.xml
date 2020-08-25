@@ -2,16 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="增加配置接口">
+      <change afterPath="$PROJECT_DIR$/src/component/statistics/Statistics.vue" afterDir="false" />
       <change beforePath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/_helpers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_helpers/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/app/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,7 +119,9 @@
       <workItem from="1596938142660" duration="15000" />
       <workItem from="1596949636323" duration="10060000" />
       <workItem from="1597022323267" duration="2594000" />
-      <workItem from="1597507142660" duration="3419000" />
+      <workItem from="1597507142660" duration="3509000" />
+      <workItem from="1597566049517" duration="599000" />
+      <workItem from="1598314356320" duration="2143000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -178,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597507673302</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add blog categories">
+      <created>1597510606396</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597510606396</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,12 +228,31 @@
     <MESSAGE value="backup code" />
     <MESSAGE value="增加配置接口" />
     <MESSAGE value="修改路径path" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改路径path" />
+    <MESSAGE value="add blog categories" />
+    <option name="LAST_COMMIT_MESSAGE" value="add blog categories" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585710398518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1585710398518" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
+          <line>55</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
+          <line>52</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

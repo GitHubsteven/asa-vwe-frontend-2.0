@@ -9,6 +9,8 @@ import BlogView from '../component/blog/BlogView'
 import BlogUpdate from '../component/blog/BlogUpdate'
 import AboutMe from '../component/home/AboutMe'
 import Category from '../component/category/Category'
+import Statistics from '../component/statistics/Statistics'
+
 
 
 Vue.use(Router);
@@ -48,6 +50,11 @@ export const router = new Router({
             path: '/category',
             name: 'Category',
             component: Category
+        },
+        {
+            path: '/statistics',
+            name: 'Statistics',
+            component: Statistics
         },
         // otherwise redirect to home
         {path: '*', redirect: '/'}

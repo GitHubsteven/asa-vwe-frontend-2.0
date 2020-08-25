@@ -7,6 +7,9 @@
                     <el-menu-item index="/blog-list">
                         Blogs
                     </el-menu-item>
+                    <el-menu-item index="/statistics">
+                        Statistics
+                    </el-menu-item>
                     <el-menu-item index="/about-me">
                         About Me
                     </el-menu-item>

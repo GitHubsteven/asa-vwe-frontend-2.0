@@ -39,10 +39,8 @@
             <el-col :span="23" :offset="1">
                 <el-select
                         v-model="blog.categories"
-                        multiple
                         filterable
                         collapse-tags
-                        multiple-limit="3"
                         default-first-option
                         placeholder="请选择文章类型">
                     <el-option
