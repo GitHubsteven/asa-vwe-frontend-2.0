@@ -7,11 +7,14 @@ import './css/style.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import VueI18n from 'vue-i18n'
-// setup fake backend
+
 Vue.use(ElementUI);
 Vue.use(VueI18n);
 import echarts from 'echarts'
-Vue.prototype.$echarts = echarts;
+
+Vue.use(echarts);
+
+// Vue.prototype.$echarts = echarts;
 
 const i18n = new VueI18n({
     locale: 'zh-CN',    // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale

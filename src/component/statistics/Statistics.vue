@@ -1,7 +1,8 @@
 <template>
     <div>
         <p>hello,statistics</p>
-        <div style="width: 100%;height: 700px;border:1px solid rgb(180,180,180);top: 0" id="echartss"></div>
+        <!--        <div style="width: 50%;height: 700px;border:1px solid rgb(180,180,180);top: 0" id="main"></div>-->
+        <div  id="cateStat"></div>
     </div>
 </template>
 
@@ -13,147 +14,99 @@
         components: {},
         data() {
             return {
-                echarts1_option: {
+                cate_option: {
                     title: {
-                        text: '基本信息',
-                        subtext: '虚假数据'
+                        text: '同名数量统计',
+                        subtext: '纯属虚构',
+                        left: 'center'
                     },
                     tooltip: {
-                        trigger: 'axis'
+                        trigger: 'item',
+                        formatter: '{a} <br/>{b} : {c} ({d}%)'
                     },
-                    color: ['rgba(31,13,230,0.95)', '#ff475d', '#49ef18', '#efeb23'],
-                    legend: [
-                        {
-                            data: ['学历层次', '职业技能'],
-                        },
-                        {
-                            top: 20,
-                            data: ['业绩成果', '专业经历'],
-                        }
-
-                    ],
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            dataView: {
-                                show: true, readOnly: true,
-                                optionToContent: function (opt) {
-                                    let axisData = opt.xAxis[0].data; //坐标数据
-                                    let series = opt.series; //折线图数据
-                                    let tdHeads = '<td  style="padding: 0 10px">时间</td>'; //表头
-                                    let tdBodys = ''; //数据
-                                    series.forEach(function (item) {
-                                        //组装表头
-                                        tdHeads += `<td style="padding: 0 10px">${item.name}</td>`;
-                                    });
-                                    let table = `<table border="1" style="margin-left:20px;border-collapse:collapse;font-size:14px;text-align:center"><tbody><tr>${tdHeads} </tr>`;
-                                    for (let i = 0, l = axisData.length; i < l; i++) {
-                                        for (let j = 0; j < series.length; j++) {
-                                            //组装表数据
-                                            tdBodys += `<td>${series[j].data[i]}</td>`;
-                                        }
-                                        table += `<tr><td style="padding: 0 10px">${axisData[i]}</td>${tdBodys}</tr>`;
-                                        tdBodys = '';
-                                    }
-                                    table += '</tbody></table>';
-                                    return table;
-                                }
-                            },
-                            magicType: {show: true, type: ['line', 'bar']},
-                            restore: {show: true},
-                            saveAsImage: {show: true}
-                        }
+                    legend: {
+                        type: 'scroll',
+                        orient: 'vertical',
+                        right: 10,
+                        top: 20,
+                        bottom: 20,
+                        data: [],
+                        selected: []
                     },
-                    calculable: true,
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value'
-                        }
-                    ],
                     series: [
                         {
-                            name: '学历层次',
-                            type: 'bar',
-                            stack: '个人信息',
-                            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-                            markPoint: {
-                                data: [
-                                    {type: 'max', name: '最大值'},
-                                    {type: 'min', name: '最小值'}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name: '职业技能',
-                            type: 'bar',
-                            stack: '个人信息',
-                            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-                            markPoint: {
-                                data: [
-                                    {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
-                                    {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name: '业绩成果',
-                            type: 'bar',
-                            stack: '个人信息',
-                            data: [2.0, 6.0, 7.0, 20.4, 21.7, 60.7, 135.6, 152.2, 56.7, 15.8, 7.0, 2.3],
-                            markPoint: {
-                                data: [
-                                    {name: '年最高', value: 152.2, xAxis: 7, yAxis: 153},
-                                    {name: '年最低', value: 2.0, xAxis: 1, yAxis: 2}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
-                            }
-                        },
-                        {
-                            name: '专业经历',
-                            type: 'bar',
-                            stack: '个人信息',
-                            data: [1.0, 6.9, 9.0, 36.4, 48.7, 90.7, 100.6, 122.2, 40.7, 8.8, 6.0, 2.3],
-                            markPoint: {
-                                data: [
-                                    {name: '年最高', value: 122.2, xAxis: 7, yAxis: 123},
-                                    {name: '年最低', value: 1.0, xAxis: 1, yAxis: 1}
-                                ]
-                            },
-                            markLine: {
-                                data: [
-                                    {type: 'average', name: '平均值'}
-                                ]
+                            name: '姓名',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['40%', '50%'],
+                            data: [],
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
                             }
                         }
                     ]
-                },
+                }
             }
+        },
+        methods: {
+            genData(count) {
+                var nameList = [
+                    '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许', '何', '吕',
+                    '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章', '云', '苏', '潘', '葛',
+                    '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳', '酆', '鲍', '史', '唐', '费', '廉',
+                    '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常', '乐', '于', '时', '傅', '皮', '卞', '齐', '康',
+                    '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹', '姚', '邵', '湛', '汪', '祁', '毛', '禹', '狄', '米', '贝',
+                    '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞', '熊', '纪', '舒', '屈', '项', '祝', '董', '梁', '杜', '阮', '蓝', '闵',
+                    '席', '季', '麻', '强', '贾', '路', '娄', '危'
+                ];
+                var legendData = [];
+                var seriesData = [];
+                var selected = {};
+                for (var i = 0; i < count; i++) {
+                    name = Math.random() > 0.65
+                      ? makeWord(4, 1) + '·' + makeWord(3, 0)
+                      : makeWord(2, 1);
+                    legendData.push(name);
+                    seriesData.push({
+                        name: name,
+                        value: Math.round(Math.random() * 100000)
+                    });
+                    selected[name] = i < 6;
+                }
+
+                return {
+                    legendData: legendData,
+                    seriesData: seriesData,
+                    selected: selected
+                };
+
+                function makeWord(max, min) {
+                    var nameLen = Math.ceil(Math.random() * max + min);
+                    var name = [];
+                    for (var i = 0; i < nameLen; i++) {
+                        name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
+                    }
+                    return name.join('');
+                }
+            }
+
         },
         mounted: function () {
             // 基于准备好的dom，初始化echarts实例
-            let myChart = echarts.init(document.getElementById('echartss'));
+            // let myChart = echarts.init(document.getElementById('main'));
             // 绘制图表，this.echarts1_option是数据
-            myChart.setOption(this.echarts1_option);
+            // myChart.setOption(this.echarts1_option);
+            let _cateStat = this.genData(50);
+            this.cate_option.legend.data = _cateStat.legendData;
+            this.cate_option.legend.selected = _cateStat.selected;
+            this.cate_option.series.data = _cateStat.seriesData;
+            let cateStat = echarts.init(document.getElementById('cateStat'));
+            // 绘制图表，this.echarts1_option是数据
+            cateStat.setOption(this.cate_option);
         }
     }
 </script>
