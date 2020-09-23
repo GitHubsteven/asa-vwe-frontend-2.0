@@ -1,56 +1,24 @@
 <template>
     <div>
         <p>hello,statistics</p>
-        <!--        <div style="width: 50%;height: 700px;border:1px solid rgb(180,180,180);top: 0" id="main"></div>-->
-        <div  id="cateStat"></div>
+        <div style="width: 50%;height: 700px;border:1px solid rgb(180,180,180);top: 0" id="cateStat"></div>
     </div>
 </template>
 
 <script>
-    import echarts from 'echarts';
+    // 引入 ECharts 主模块
+    var echarts = require('echarts/lib/echarts');
+    // 引入柱状图
+    require('echarts/lib/chart/bar');
+    // 引入提示框和标题组件
+    require('echarts/lib/component/tooltip');
+    require('echarts/lib/component/title');
 
     export default {
         name: "Statistics",
         components: {},
         data() {
-            return {
-                cate_option: {
-                    title: {
-                        text: '同名数量统计',
-                        subtext: '纯属虚构',
-                        left: 'center'
-                    },
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '{a} <br/>{b} : {c} ({d}%)'
-                    },
-                    legend: {
-                        type: 'scroll',
-                        orient: 'vertical',
-                        right: 10,
-                        top: 20,
-                        bottom: 20,
-                        data: [],
-                        selected: []
-                    },
-                    series: [
-                        {
-                            name: '姓名',
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['40%', '50%'],
-                            data: [],
-                            emphasis: {
-                                itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
+            return {}
         },
         methods: {
             genData(count) {
@@ -67,13 +35,11 @@
                 var seriesData = [];
                 var selected = {};
                 for (var i = 0; i < count; i++) {
-                    name = Math.random() > 0.65
-                      ? makeWord(4, 1) + '·' + makeWord(3, 0)
-                      : makeWord(2, 1);
+                    name = "category" + i;
                     legendData.push(name);
                     seriesData.push({
                         name: name,
-                        value: Math.round(Math.random() * 100000)
+                        value: i+1
                     });
                     selected[name] = i < 6;
                 }
@@ -96,17 +62,48 @@
 
         },
         mounted: function () {
-            // 基于准备好的dom，初始化echarts实例
-            // let myChart = echarts.init(document.getElementById('main'));
+            let data = this.genData(10);
+
+            let _option = {
+                title: {
+                    text: '博客分类统计',
+                    subtext: '',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    data: data.legendData,
+                    selected: data.selected
+                },
+                series: [
+                    {
+                        name: '姓名',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['40%', '50%'],
+                        data: data.seriesData,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            let myChart = echarts.init(document.getElementById('cateStat'));
             // 绘制图表，this.echarts1_option是数据
-            // myChart.setOption(this.echarts1_option);
-            let _cateStat = this.genData(50);
-            this.cate_option.legend.data = _cateStat.legendData;
-            this.cate_option.legend.selected = _cateStat.selected;
-            this.cate_option.series.data = _cateStat.seriesData;
-            let cateStat = echarts.init(document.getElementById('cateStat'));
-            // 绘制图表，this.echarts1_option是数据
-            cateStat.setOption(this.cate_option);
+            myChart.setOption(_option);
         }
     }
 </script>
