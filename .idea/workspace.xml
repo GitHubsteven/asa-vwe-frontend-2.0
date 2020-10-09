@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="增加配置接口">
-      <change afterPath="$PROJECT_DIR$/src/component/statistics/Statistics.vue" afterDir="false" />
-      <change beforePath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" beforeDir="false" afterPath="F:/work_place1/asa-vwe-express/src/models/blog.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/_store/setting.module.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/_helpers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/_helpers/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/app/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/app/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogAdd.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/BlogList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/BlogList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/_store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -55,16 +48,16 @@
     <property name="ts.external.directory.path" value="D:\WebStorm 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common\lang" />
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\_store" />
       <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\img" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\css" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\component\home" />
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component\register" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common\lang" />
+      <recent name="H:\private\asa-vwe-frontend-2.0\src\component" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -121,7 +114,9 @@
       <workItem from="1597022323267" duration="2594000" />
       <workItem from="1597507142660" duration="3509000" />
       <workItem from="1597566049517" duration="599000" />
-      <workItem from="1598314356320" duration="2143000" />
+      <workItem from="1598314356320" duration="5554000" />
+      <workItem from="1602114100894" duration="635000" />
+      <workItem from="1602129928237" duration="962000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -200,7 +195,21 @@
       <option name="project" value="LOCAL" />
       <updated>1597510606396</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add echart examples">
+      <created>1598316698634</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1598316698634</updated>
+    </task>
+    <task id="LOCAL-00013" summary="change blog model">
+      <created>1598316817418</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1598316817418</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +238,9 @@
     <MESSAGE value="增加配置接口" />
     <MESSAGE value="修改路径path" />
     <MESSAGE value="add blog categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="add blog categories" />
+    <MESSAGE value="add echart examples" />
+    <MESSAGE value="change blog model" />
+    <option name="LAST_COMMIT_MESSAGE" value="change blog model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585710398518">
@@ -243,13 +254,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
           <line>55</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
           <line>52</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
