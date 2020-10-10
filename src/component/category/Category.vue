@@ -5,17 +5,18 @@
                 <el-tag>{{$t('lang.CATEGORY_LIST')}}</el-tag>
             </el-col>
         </el-row>
-        <div v-for="category in categories" v-bind:key="category.id" style="margin-top: 10px">
+        <div v-for="category in _getCategories" v-bind:key="category.key" style="margin-top: 10px">
             <el-row>
                 <el-col :span="5">
-                    <el-input v-model="category.name" :disabled="!category.isEditable"/>
+                    <el-input v-model="category.value" :disabled="!category.isEditable"/>
                 </el-col>
                 <el-col :span="18" :offset="1">
-                    <el-button type="primary" icon="el-icon-edit" circle @click="editCate(category)"/>
-                    <el-button v-show="true" type="success" icon="el-icon-check" circle
+                    <el-button v-show="status.loggedIn" type="primary" icon="el-icon-edit" circle
+                               @click="editCate(category)"/>
+                    <el-button v-show="status.loggedIn" type="success" icon="el-icon-check" circle
                                @click="confirmCate(category)"/>
-                    <el-button v-show="true" type="danger" icon="el-icon-delete" circle
-                               @click="deleteCate(category._id)"/>
+                    <el-button v-show="status.loggedIn" type="danger" icon="el-icon-delete" circle
+                               @click="deleteCate(category.key)"/>
                 </el-col>
             </el-row>
         </div>
@@ -27,7 +28,7 @@
                 </el-input>
             </el-col>
             <el-col :span="2" :offset="1">
-                <el-button v-show="true" type="success" icon="el-icon-check" circle
+                <el-button v-show="status.loggedIn" type="success" icon="el-icon-check" circle
                            @click="addCate()"/>
             </el-col>
         </el-row>
@@ -36,7 +37,9 @@
 
 <script>
     import {CategoryService} from "../../_services/category.service"
-    import {mapActions, mapState} from "vuex"
+    import {mapActions, mapState, mapGetters} from "vuex"
+    // import * as _ from "lodash";
+    // import * as vweConstant from "../../common/constants";
 
     let categoryService = new CategoryService();
 
@@ -44,8 +47,6 @@
         name: "Category",
         data() {
             return {
-                cateNum: 2,
-                categories: [],
                 addedCate: {
                     name: null
                 },
@@ -53,52 +54,56 @@
             }
         },
         methods: {
+            // ['setting/refresh', 'setting/addCate', 'setting/updateCate', 'setting/delCate', 'setting/changeEditable']
+            ...mapActions({
+                refresh: 'setting/refresh',
+                _addCate: 'setting/addCate',
+                _updateCate: 'setting/updateCate',
+                _delCate: 'setting/delCate',
+                changeEditable: 'setting/changeEditable'
+            }),
             editCate(category) {
-                this.editCateName = category.name;
-                category.isEditable = true;
+                this.editCateName = category.value;
+                this.changeEditable({"key": category.key, "isEditable": true});
             },
             confirmCate(category) {
-                if (this.editCateName === category.name) {
+                if (this.editCateName === category.value) {
                     alert("category has not been changed!");
-                    category.isEditable = false;
+                    this.changeEditable({"key": category.key, "isEditable": false});
                     return;
                 }
-                categoryService.update(category).then(resp => {
-                    category.isEditable = false;
-                })
+                this._updateCate({
+                    _id: category.key,
+                    name: category.value
+                });
             },
 
-            deleteCate(category) {
+            deleteCate(categoryId) {
                 this.$confirm('确定要删除这条目录吗?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    categoryService.delCategory(blog._id).then(resp => {
-                        this.init();
-                    })
-                }).catch(() => {
-                    //console.log("cancel the confirm")
+                    this._delCate(categoryId);
+                }).catch((err) => {
+                    this.alert(err)
                 });
             },
             addCate() {
                 // clear the added the refresh the existed category list
-                this.categories.push({name: this.addedCate.name, id: this.cateNum++});
-                this.addedCate.name = null;
-            },
-            init() {
-                categoryService.listCategories().then((resp) => {
-                    resp.forEach(it => {
-                        it.isEditable = false;
-                    });
-                    this.categories = resp;
-                })
+                this._addCate(this.addedCate);
             }
         },
         mounted() {
-            this.init();
         },
-        computed: {}
+        computed: {
+            ...mapGetters({
+                _getCategories: 'setting/getCategories'
+            }),
+            ...mapState({
+                status: state => state.account.status
+            })
+        }
     }
 </script>
 

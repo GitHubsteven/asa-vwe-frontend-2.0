@@ -1,69 +1,156 @@
-import {userService} from '../_services';
-import {router} from '../_helpers';
+import {CategoryService, CommonService} from '../_services';
 import * as vweConstant from "../common/constants"
+import * as _ from "lodash"
 
-const vweSetting = JSON.parse(localStorage.getItem(vweConstant.SETTING_KEY));
+
+let categoryService = new CategoryService();
+let commonService = new CommonService();
+
+const vweSetting = localStorage.getItem(vweConstant.SETTING_KEY) ? JSON.parse(localStorage.getItem(vweConstant.SETTING_KEY)) : {};
+
+const state = vweSetting.categories
+  ? {categories: mapCategories(vweSetting.categories)}
+  : {categories: []};
 
 const actions = {
-    login({dispatch, commit}, {username, password}) {
-        commit('loginRequest', {username});
 
-        userService.login(username, password)
-            .then(
-                user => {
-                    commit('loginSuccess', user);
-                    router.push('/');
-                },
-                error => {
-                    commit('loginFailure', error);
-                    dispatch('alert/error', error, {root: true});
-                }
-            );
+    /**
+     * refresh system setting
+     *
+     * @param commit
+     */
+    refresh({commit}) {
+        commonService.settings().then(result => {
+            commit("refreshAll", result);
+        })
     },
-    logout({commit}) {
-        userService.logout();
-        commit('logout');
-    },
-    register({dispatch, commit}, user) {
-        commit('registerRequest', user);
 
-        userService.register(user)
-            .then(
-                user => {
-                    commit('registerSuccess', user);
-                    router.push('/login');
-                    setTimeout(() => {
-                        // display success message after route change completes
-                        dispatch('alert/success', 'Registration successful', {root: true});
-                    })
-                },
-                error => {
-                    commit('registerFailure', error);
-                    dispatch('alert/error', error, {root: true});
-                }
-            );
+    /**
+     * change isEditable field
+     *
+     * @param commit
+     * @param payload:{id:"",isEditable:false/true}
+     */
+    changeEditable({commit}, payload) {
+        commit("modifyEditable", payload);
+    },
+
+    /**
+     * refresh categories
+     * @param dispatch
+     * @param commit
+     */
+    refreshCate({dispatch, commit}) {
+
+        categoryService.listCategories().then(newCategories => {
+              // dispatch('alert/success', "add success", {root: true});
+              dispatch('refresh');
+          },
+          error => {
+              dispatch('alert/error', error, {root: true});
+          }
+        );
+    },
+
+
+    /**
+     * add category
+     *
+     * @param commit
+     * @param dispatch
+     * @param category
+     */
+    addCate({commit, dispatch}, category) {
+        categoryService.createCategory(category).then(result => {
+              dispatch('alert/success', "add success", {root: true});
+              dispatch('refresh');
+          },
+          error => {
+              dispatch('alert/error', error, {root: true});
+          });
+    },
+
+
+    /**
+     * update category
+     *
+     * @param commit
+     * @param dispatch
+     * @param category
+     */
+    updateCate({commit, dispatch}, category) {
+        // make up the parameters
+        categoryService.update(category).then(result => {
+              dispatch('alert/success', "update success", {root: true});
+              dispatch('refresh');
+          },
+          error => {
+              dispatch('alert/error', error, {root: true});
+          });
+    },
+
+    /**
+     * delete category
+     *
+     * @param commit
+     * @param dispatch
+     * @param id category id
+     */
+    async delCate({commit, dispatch}, id) {
+        categoryService.delCategory(id).then(result => {
+              dispatch('alert/success', "delete success", {root: true});
+              dispatch('refresh');
+          },
+          error => {
+              dispatch('alert/error', error, {root: true});
+          });
+
+    }
+};
+
+
+const getters = {
+    getCategories: (state) => {
+        return state.categories;
     }
 };
 
 const mutations = {
-    registerFailure(state, error) {
-        state.status = {};
-    },
     /**
-     * 刷新系统配置
-     * @param vweSetting
+     * refresh system setting
+     *
+     * @param state
      * @param newSetting
      */
-    refresh(vweSetting, newSetting) {
-        localStorage.setItem(vweConstant.SETTING_KEY, newSetting);
-        vweSetting = newSetting;
-    }
+    refreshAll(state, newSetting) {
+        localStorage.setItem(vweConstant.SETTING_KEY, JSON.stringify(newSetting));
+        state.categories = mapCategories(newSetting.categories);
+    },
 
+    modifyEditable(state, payload) {
+        state.categories.forEach(cate => {
+            if (cate.key === payload.key) {
+                cate.isEditable = payload.isEditable;
+            }
+        })
+    }
 };
+
+function mapCategories(categories) {
+    if (!categories) return [];
+    return categories.map(cate => {
+        let cateObj = {};
+        Object.assign(cateObj, cate);
+        cateObj.isEditable = false;
+        return cateObj;
+    });
+}
+
 
 export const setting = {
     namespaced: true,
-    vweSetting,
+    state,
     actions,
+    getters,
     mutations
 };

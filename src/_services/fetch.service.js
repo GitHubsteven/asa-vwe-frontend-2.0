@@ -10,7 +10,7 @@ function vFetch(url, requestOptions) {
     }
     let apiEnvFinal = apiEnvStr ? apiEnvStr : apiEnv.express;
     // reset url with apiEnv
-    url = url.replace("$apiEnv", apiEnvFinal) + apiEnv.projectPrefix;
+    url = url.replace("$apiEnv", apiEnvFinal).replace("$projectPrefix", apiEnv.projectPrefix);
     return fetch(url, requestOptions);
 }
 

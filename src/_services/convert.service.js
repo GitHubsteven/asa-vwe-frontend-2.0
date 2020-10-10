@@ -1,6 +1,7 @@
 import {showdown} from '../_wraps/markdown';
 
-let converter = new showdown.Converter({tables: true, extensions: ['flowchart', 'mathjax']});
+//todo 如果需要支持mathjax，请开放
+let converter = new showdown.Converter({tables: true, extensions: ['flowchart' ]}); //'mathjax'
 
 export class ConvertService {
     constructor() {

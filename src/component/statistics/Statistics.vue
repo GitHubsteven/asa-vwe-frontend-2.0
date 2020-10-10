@@ -39,7 +39,7 @@
                     legendData.push(name);
                     seriesData.push({
                         name: name,
-                        value: i+1
+                        value: i + 1
                     });
                     selected[name] = i < 6;
                 }
@@ -85,7 +85,7 @@
                 },
                 series: [
                     {
-                        name: '姓名',
+                        name: 'blogStat',
                         type: 'pie',
                         radius: '55%',
                         center: ['40%', '50%'],

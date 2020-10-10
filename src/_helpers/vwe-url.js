@@ -4,7 +4,7 @@ let prefix = {
     blogs: "/blogs",
     users: "/users",
     categories: "/categories",
-    common: "common"
+    common: "/common"
 };
 
 let blogs = {

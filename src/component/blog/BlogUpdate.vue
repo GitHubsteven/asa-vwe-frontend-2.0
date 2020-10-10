@@ -41,6 +41,23 @@
                 <el-button type="primary" @click="update()">Update</el-button>
             </el-col>
         </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="23" :offset="1">
+                <el-select
+                        v-model="blog.categories"
+                        filterable
+                        collapse-tags
+                        default-first-option
+                        placeholder="请选择文章类型">
+                    <el-option
+                            v-for="item in cateOptions"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -64,6 +81,7 @@
                     context: null,
                     author: null,
                     createTime: new Date(),
+                    categories: null,
                     id: null
                 },
                 isEditable: true,
@@ -73,7 +91,8 @@
                     editor_offset: 1,
                     shower_span: 10,
                     shower_offset: 1
-                }
+                },
+                cateOptions:[]
             }
         },
         methods: {
@@ -96,6 +115,14 @@
                 //init from xhr request if session's draft not exist
                 if (blogId) {
                     this.getBlog(blogId);
+                }
+                // init category options
+                let vweSetting = localStorage.getItem("vwe-setting");
+                if (vweSetting) {
+                    let categories = JSON.parse(vweSetting).categories;
+                    categories.forEach(cate => {
+                        this.cateOptions.push({value: cate, label: cate});
+                    })
                 }
             },
 

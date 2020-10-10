@@ -61,9 +61,6 @@
 <script>
     import {router} from '../../_helpers/router.js'
     import {mapActions, mapState} from "vuex"
-    import {CommonService} from "../../_services/common.service";
-
-    let commonService = new CommonService();
 
     export default {
         name: "App",
@@ -80,6 +77,7 @@
                 clearAlert: 'alert/clear',
                 logout: 'account/logout',
                 switchEnv: 'env/switchTo',
+                initSetting: 'setting/refresh'
             }),
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
@@ -114,9 +112,7 @@
                 });
             },
             init() {
-                commonService.settings().then((settings) => {
-                    localStorage.setItem("vwe-setting", JSON.stringify(settings));
-                })
+                this.initSetting();
             }
         },
         mounted() {

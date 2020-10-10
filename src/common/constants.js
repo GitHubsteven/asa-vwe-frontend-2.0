@@ -1,1 +1,1 @@
-export const SETTING_KEY = "setting_key";
+export const SETTING_KEY = "vwe-setting";

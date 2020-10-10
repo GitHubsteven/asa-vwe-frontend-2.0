@@ -23,12 +23,7 @@ export class CategoryService {
 
     //插入
     createCategory(category) {
-        let userJson = localStorage.getItem("user");
-        if (userJson) {
-            let user = JSON.parse(userJson);
-            category.creator = user.username;
-            category.modifier = user.username;
-        }
+        this.fillUserInfo(category);
         return axiosService.post(categories.prefix + categories.create, category);
     }
 
@@ -41,6 +36,7 @@ export class CategoryService {
     //更新，调用put方法，表示修改数据
     update(category) {
         let url = (categories.prefix + categories.update).replace(":id", category._id);
+        this.fillUserInfo(category);
         return axiosService.put(url, category);
     }
 
@@ -51,5 +47,14 @@ export class CategoryService {
             return user.name;
         }
         return null;
+    }
+
+    fillUserInfo(obj) {
+        let userJson = localStorage.getItem("user");
+        if (userJson) {
+            let user = JSON.parse(userJson);
+            obj.creator = user.username;
+            obj.modifier = user.username;
+        }
     }
 }
