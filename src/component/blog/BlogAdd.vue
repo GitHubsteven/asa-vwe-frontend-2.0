@@ -44,12 +44,21 @@
                         default-first-option
                         placeholder="请选择文章类型">
                     <el-option
-                            v-for="item in options"
-                            :key="item.value"
-                            :label="item.label"
+                            v-for="item in getCateOpts"
+                            :key="item.key"
+                            :label="item.value"
                             :value="item.value">
                     </el-option>
                 </el-select>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="20" :offset="1">
+                <el-input
+                        placeholder="标签，多个标签，请用逗号(,)分割"
+                        v-model="blog.tags"
+                        clearable>
+                </el-input>
             </el-col>
         </el-row>
         <el-row style="margin-top: 10px">
@@ -65,7 +74,7 @@
 <script>
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
-    import {mapState, mapActions} from "vuex";
+    import {mapGetters, mapActions} from "vuex";
 
     let convertService = new ConvertService();
     let blogService = new BlogService();
@@ -78,7 +87,8 @@
                 blog: {
                     title: null,
                     context: null,
-                    categories: []
+                    categories: null,
+                    tags: null
                 },
                 isEditable: true,
                 isVisual: false,
@@ -87,8 +97,7 @@
                     editor_offset: 1,
                     shower_span: 10,
                     shower_offset: 1
-                },
-                options: []
+                }
             }
         },
         methods: {
@@ -115,13 +124,6 @@
                 }
                 this.layout.editor_span = 20;
                 this.layout.shower_span = 0;
-                let vweSetting = localStorage.getItem("vwe-setting");
-                if (vweSetting) {
-                    let categories = JSON.parse(vweSetting).categories;
-                    categories.forEach(cate => {
-                        this.options.push({value: cate, label: cate});
-                    })
-                }
             },
             onlyEditor() {
                 this.renderEditor(true, 20, false, 0);
@@ -183,6 +185,11 @@
                     e.preventDefault()
                 }
             }
+        },
+        computed: {
+            ...mapGetters({
+                getCateOpts: 'setting/getCategories'
+            })
         },
         activated() {
             this.init();

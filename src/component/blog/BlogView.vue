@@ -2,18 +2,17 @@
     <div>
         <el-row>
             <el-col :span="10" :offset="8">
+                <h3>{{this.blog.title}}</h3>
                 <div class="grid-content bg-purple-dark" id="blog">
-                    <h3>{{this.blog.title}}</h3>
                     <el-tag type="info">{{this.blog.author}}</el-tag>
+                    <el-tag type="info">{{this.blog.categories}}</el-tag>
                     <el-tag type="info">{{this.blog.createTime}}</el-tag>
-                    <hr/>
-                    <div  v-html="convertMarkdown(blog.context)">
-
-                    </div>
                 </div>
-                <div>
-
+                <div class="grid-content bg-purple-dark" id="blog2" style="margin-top: 5px">
+                    <el-tag type="info" v-for="tag in blog.tags" style="margin-right: 2px">{{tag}}</el-tag>
                 </div>
+                <hr/>
+                <div v-html="convertMarkdown(blog.context)"/>
             </el-col>
         </el-row>
         <!--增加评论输入区-->
@@ -113,7 +112,9 @@
                     context: null,
                     author: null,
                     createTime: null,
-                    _id: null
+                    _id: null,
+                    categories: null,
+                    tags: []
                 },
                 comment: {
                     author: "asa.x",
@@ -164,6 +165,9 @@
                 blogService.viewBlog(id).then(resp => {
                     console.log(resp);
                     _.extend(this.blog, resp);
+                    if (resp.tags) {
+                        this.blog.tags = resp.tags.split(/[,，]/);
+                    }
                 });
             },
             getComments(blogId) {

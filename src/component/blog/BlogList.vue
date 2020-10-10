@@ -9,7 +9,7 @@
                                 <el-button type="primary">Add</el-button>
                             </router-link>
                             <router-link to="/category">
-                                <el-button type="primary">category</el-button>
+                                <el-button type="primary">Category</el-button>
                             </router-link>
                         </div>
                     </el-col>

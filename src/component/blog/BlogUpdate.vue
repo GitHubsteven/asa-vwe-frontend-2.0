@@ -37,12 +37,6 @@
         </el-row>
         <el-row style="margin-top: 10px">
             <el-col :span="23" :offset="1">
-                <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
-                <el-button type="primary" @click="update()">Update</el-button>
-            </el-col>
-        </el-row>
-        <el-row style="margin-top: 10px">
-            <el-col :span="23" :offset="1">
                 <el-select
                         v-model="blog.categories"
                         filterable
@@ -50,14 +44,30 @@
                         default-first-option
                         placeholder="请选择文章类型">
                     <el-option
-                            v-for="item in cateOptions"
-                            :key="item.value"
-                            :label="item.label"
+                            v-for="item in getCateOpts"
+                            :key="item.key"
+                            :label="item.value"
                             :value="item.value">
                     </el-option>
                 </el-select>
             </el-col>
         </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="20" :offset="1">
+                <el-input
+                        placeholder="标签，多个标签，请用逗号(,)分割"
+                        v-model="blog.tags"
+                        clearable>
+                </el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="23" :offset="1">
+                <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
+                <el-button type="primary" @click="update()">Update</el-button>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
@@ -65,6 +75,7 @@
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
     import * as _ from "lodash";
+    import {mapGetters} from "vuex";
 
 
     let convertService = new ConvertService();
@@ -82,6 +93,7 @@
                     author: null,
                     createTime: new Date(),
                     categories: null,
+                    tags: null,
                     id: null
                 },
                 isEditable: true,
@@ -91,8 +103,7 @@
                     editor_offset: 1,
                     shower_span: 10,
                     shower_offset: 1
-                },
-                cateOptions:[]
+                }
             }
         },
         methods: {
@@ -115,14 +126,6 @@
                 //init from xhr request if session's draft not exist
                 if (blogId) {
                     this.getBlog(blogId);
-                }
-                // init category options
-                let vweSetting = localStorage.getItem("vwe-setting");
-                if (vweSetting) {
-                    let categories = JSON.parse(vweSetting).categories;
-                    categories.forEach(cate => {
-                        this.cateOptions.push({value: cate, label: cate});
-                    })
                 }
             },
 
@@ -201,6 +204,11 @@
                     e.preventDefault()
                 }
             }
+        },
+        computed: {
+            ...mapGetters({
+                getCateOpts: 'setting/getCategories'
+            })
         },
         activated() {
             this.init();
