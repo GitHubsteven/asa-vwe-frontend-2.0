@@ -2,6 +2,7 @@
     <div>
         <h2>Statistics</h2>
         <div style="width: 40%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="cateStat"></div>
+        <div style="width: 40%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="timeStat"></div>
     </div>
 </template>
 
@@ -25,7 +26,7 @@
             return {}
         },
         methods: {
-            descripBlogByCategory: () => {
+            describeBlogByCategory: () => {
                 let myChart = echarts.init(document.getElementById('cateStat'));
 
                 statisticsService.blogByCategory().then(data => {
@@ -71,10 +72,13 @@
                 }, error => {
 
                 });
+            },
+            describeBlogByCreatTime:()=>{
+
             }
         },
         mounted: function () {
-            this.descripBlogByCategory();
+            this.describeBlogByCategory();
         }
     }
 </script>
