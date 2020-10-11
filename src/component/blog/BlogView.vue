@@ -4,9 +4,9 @@
             <el-col :span="10" :offset="8">
                 <h3>{{this.blog.title}}</h3>
                 <div class="grid-content bg-purple-dark" id="blog">
-                    <el-tag type="info">{{this.blog.author}}</el-tag>
-                    <el-tag type="info">{{this.blog.categories}}</el-tag>
-                    <el-tag type="info">{{this.blog.createTime}}</el-tag>
+                    <el-tag type="info">{{this.blog.author ? this.blog.author : "-"}}</el-tag>
+                    <el-tag type="info">{{this.blog.categories ? this.blog.categories : "-"}}</el-tag>
+                    <el-tag type="info">{{this.blog.createTime ? this.blog.createTime: "-"}}</el-tag>
                 </div>
                 <div class="grid-content bg-purple-dark" id="blog2" style="margin-top: 5px">
                     <el-tag type="info" v-for="tag in blog.tags" style="margin-right: 2px">{{tag}}</el-tag>

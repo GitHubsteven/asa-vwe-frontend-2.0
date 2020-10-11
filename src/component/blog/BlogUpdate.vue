@@ -138,7 +138,9 @@
 
             update() {
                 let oldBlog = blogTmp;
-                if (oldBlog.title === this.blog.title && oldBlog.context === this.blog.context && oldBlog.author === this.blog.author) {
+                if (oldBlog.title === this.blog.title && oldBlog.context === this.blog.context
+                  && oldBlog.author === this.blog.author && oldBlog.categories === this.blog.categories
+                  && oldBlog.tags === this.blog.tags) {
                     window.alert("there is no change!");
                     return;
                 }

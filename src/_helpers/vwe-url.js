@@ -1,4 +1,4 @@
-export {blogs, users, prefix, categories, common};
+export {blogs, users, prefix, categories, common, statistics};
 
 let prefix = {
     blogs: "/blogs",
@@ -39,4 +39,10 @@ let categories = {
 let common = {
     prefix: "/common",
     setting: "/setting"
+};
+
+let statistics = {
+    prefix: "/statistics",
+    blogByCategory: "/blogByCategory",
+    blogByTag: "/blogByTag"
 };
