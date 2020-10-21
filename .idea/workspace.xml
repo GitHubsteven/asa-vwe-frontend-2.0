@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="正常运行新项目">
-      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" beforeDir="false" />
+    <list default="true" id="1754b728-62f4-4eda-9d50-8bb30f1c03c0" name="Default Changelist" comment="增加配置接口">
+      <change afterPath="$PROJECT_DIR$/src/_store/setting.module.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/ListBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/ListBlog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/blog/ViewBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/blog/ViewBlog.vue" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/_store" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -37,20 +44,45 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="H:\private\asa-vwe-frontend-2.0\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="D:\WebStorm 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\_store" />
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\img" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\css" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\component\home" />
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component\register" />
-      <recent name="H:\private\asa-vwe-frontend-2.0\src\component\login" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\work_place2\asa-vwe-frontend-2.0\src\common\lang" />
       <recent name="H:\private\asa-vwe-frontend-2.0\src\component" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="vwe-express-parent" type="js.build_tools.npm">
+      <package-json value="F:/work_place1/asa-vwe-express/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -69,6 +101,22 @@
       <workItem from="1585449365301" duration="2003000" />
       <workItem from="1585626737240" duration="13845000" />
       <workItem from="1585710386875" duration="1177000" />
+      <workItem from="1585995442563" duration="2538000" />
+      <workItem from="1592131567794" duration="2790000" />
+      <workItem from="1592363653479" duration="3493000" />
+      <workItem from="1592658343524" duration="4689000" />
+      <workItem from="1592708300457" duration="1731000" />
+      <workItem from="1592710168862" duration="6569000" />
+      <workItem from="1593048599875" duration="11956000" />
+      <workItem from="1593275547321" duration="167000" />
+      <workItem from="1596938142660" duration="15000" />
+      <workItem from="1596949636323" duration="10060000" />
+      <workItem from="1597022323267" duration="2594000" />
+      <workItem from="1597507142660" duration="3509000" />
+      <workItem from="1597566049517" duration="599000" />
+      <workItem from="1598314356320" duration="5554000" />
+      <workItem from="1602114100894" duration="635000" />
+      <workItem from="1602129928237" duration="962000" />
     </task>
     <task id="LOCAL-00001" summary="移动结构">
       <created>1584616762650</created>
@@ -105,7 +153,63 @@
       <option name="project" value="LOCAL" />
       <updated>1584698663835</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="正常运行新项目">
+      <created>1585758368369</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585758368369</updated>
+    </task>
+    <task id="LOCAL-00007" summary="backup code">
+      <created>1593275687991</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1593275687991</updated>
+    </task>
+    <task id="LOCAL-00008" summary="增加配置接口">
+      <created>1597022356934</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597022356934</updated>
+    </task>
+    <task id="LOCAL-00009" summary="增加配置接口">
+      <created>1597022419222</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1597022419222</updated>
+    </task>
+    <task id="LOCAL-00010" summary="修改路径path">
+      <created>1597507673302</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1597507673302</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add blog categories">
+      <created>1597510606396</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597510606396</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add echart examples">
+      <created>1598316698634</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1598316698634</updated>
+    </task>
+    <task id="LOCAL-00013" summary="change blog model">
+      <created>1598316817418</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1598316817418</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,12 +234,34 @@
     <MESSAGE value="修改vue component names" />
     <MESSAGE value="修改和增加eslint的一些异常" />
     <MESSAGE value="正常运行新项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="正常运行新项目" />
+    <MESSAGE value="backup code" />
+    <MESSAGE value="增加配置接口" />
+    <MESSAGE value="修改路径path" />
+    <MESSAGE value="add blog categories" />
+    <MESSAGE value="add echart examples" />
+    <MESSAGE value="change blog model" />
+    <option name="LAST_COMMIT_MESSAGE" value="change blog model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585710398518">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="719" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1585710398518" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
+          <line>55</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://F:/work_place1/asa-vwe-express/src/_service/blog/blog.service.js</url>
+          <line>52</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

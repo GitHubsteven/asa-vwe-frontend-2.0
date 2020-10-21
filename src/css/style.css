@@ -1,8 +1,8 @@
-h4 {
-    font-family: helvetica, serif;
-    color: deepskyblue;
-    background: ghostwhite;
-}
+/*h4 {*/
+/*    font-family: helvetica, serif;*/
+/*    color: deepskyblue;*/
+/*    background: ghostwhite;*/
+/*}*/
 
 .border-style {
     border: 10px deepskyblue;
@@ -51,4 +51,15 @@ body {
 
 .env_express {
     background-color: lightyellow;
+}
+code{
+    background-color: -moz-mac-accentlightshadow;
+}
+
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+}
+.el-icon-arrow-down {
+    font-size: 12px;
 }

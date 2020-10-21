@@ -1,7 +1,8 @@
 const apiEnv = {
     key: "vwe_env",
     express: "express",
-    spring: "spring"
+    spring: "spring",
+    projectPrefix: "/vwe"
 };
 
 export {apiEnv};

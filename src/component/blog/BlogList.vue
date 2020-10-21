@@ -3,15 +3,18 @@
         <el-row>
             <el-col :span="20" :offset="1">
                 <el-row>
-                    <el-col :span="3">
+                    <el-col :span="6">
                         <div v-show="status.loggedIn">
                             <router-link to="/blog-add">
                                 <el-button type="primary">Add</el-button>
                             </router-link>
+                            <router-link to="/category">
+                                <el-button type="primary">Category</el-button>
+                            </router-link>
                         </div>
                     </el-col>
 
-                    <el-col :span="5" :offset="`${status.loggedIn? 11: 14}`">
+                    <el-col :span="5" :offset="status.loggedIn? 11: 14">
                         <div>
                             <el-input placeholder="input content" v-model="searchers.title">
                                 <template slot="prepend">title</template>
@@ -41,8 +44,8 @@
                                 {{createSyllabus(blog.context)}}
                             </div>
                             <div class="text item">
-                                <el-tag type="info">test</el-tag>
-                                <el-tag type="info">{{blog.author}}</el-tag>
+                                <el-tag type="info">{{blog.categories ? blog.categories:"-"}}</el-tag>
+                                <el-tag type="info">{{blog.author ? blog.author : "-"}}</el-tag>
                                 <el-tag type="info">{{blog.createTime}}</el-tag>
                             </div>
                         </el-card>
@@ -63,7 +66,6 @@
                 </el-row>
             </el-col>
         </el-row>
-
     </div>
 </template>
 

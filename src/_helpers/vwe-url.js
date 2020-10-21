@@ -1,4 +1,12 @@
-export {blogs, users, prefix};
+export {blogs, users, prefix, categories, common, statistics};
+
+let prefix = {
+    blogs: "/blogs",
+    users: "/users",
+    categories: "/categories",
+    common: "/common"
+};
+
 let blogs = {
     prefix: "/blogs",
     list: "/list",
@@ -19,7 +27,23 @@ let users = {
     delete: "/:id"
 };
 
-let prefix = {
-    blogs: "/blogs",
-    users: "/users"
+let categories = {
+    prefix: "/categories",
+    list: "/",
+    getById: "/:id",
+    update: "/:id",
+    delete: "/:id",
+    create: "/"
+};
+
+let common = {
+    prefix: "/common",
+    setting: "/setting"
+};
+
+let statistics = {
+    prefix: "/statistics",
+    blogByCategory: "/blogByCategory",
+    blogByTag: "/blogByTag",
+    blogByCreateTime: "/blogByCreateTime"
 };

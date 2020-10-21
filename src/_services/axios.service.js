@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
     if (authHeader().Authorization) {
         config.headers['Authorization'] = authHeader().Authorization;
     }
-    config.baseURL = "/api/" + apiEnvStr;
+    config.baseURL = "/api/" + apiEnvStr + apiEnv.projectPrefix;
     return config;
 }, (err => {
     return Promise.reject(err);

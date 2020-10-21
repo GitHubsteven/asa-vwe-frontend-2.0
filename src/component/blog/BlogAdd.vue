@@ -37,17 +37,44 @@
         </el-row>
         <el-row style="margin-top: 10px">
             <el-col :span="23" :offset="1">
+                <el-select
+                        v-model="blog.categories"
+                        filterable
+                        collapse-tags
+                        default-first-option
+                        placeholder="请选择文章类型">
+                    <el-option
+                            v-for="item in getCateOpts"
+                            :key="item.key"
+                            :label="item.value"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="20" :offset="1">
+                <el-input
+                        placeholder="标签，多个标签，请用逗号(,)分割"
+                        v-model="blog.tags"
+                        clearable>
+                </el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="23" :offset="1">
                 <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
                 <el-button type="primary" @click="create()">Create</el-button>
             </el-col>
         </el-row>
+
     </div>
 </template>
 
 <script>
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
-    import {mapState, mapActions} from "vuex";
+    import {mapGetters, mapActions} from "vuex";
 
     let convertService = new ConvertService();
     let blogService = new BlogService();
@@ -60,6 +87,8 @@
                 blog: {
                     title: null,
                     context: null,
+                    categories: null,
+                    tags: null
                 },
                 isEditable: true,
                 isVisual: false,
@@ -72,7 +101,9 @@
             }
         },
         methods: {
+            ...mapActions(['alert/success', 'alert/error']),
             create() {
+
                 blogService.createBlog(this.blog).then(res => {
                     //页面跳转
                     this.clearDraft();
@@ -154,6 +185,11 @@
                     e.preventDefault()
                 }
             }
+        },
+        computed: {
+            ...mapGetters({
+                getCateOpts: 'setting/getCategories'
+            })
         },
         activated() {
             this.init();

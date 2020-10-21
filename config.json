@@ -4,5 +4,5 @@
     "express": 9090,
     "spring": 9190
   },
-  "apiUrl": "/api/$apiEnv"
+  "apiUrl": "/api/$apiEnv$projectPrefix"
 }

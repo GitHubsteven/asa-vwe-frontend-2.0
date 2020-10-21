@@ -37,10 +37,37 @@
         </el-row>
         <el-row style="margin-top: 10px">
             <el-col :span="23" :offset="1">
+                <el-select
+                        v-model="blog.categories"
+                        filterable
+                        collapse-tags
+                        default-first-option
+                        placeholder="请选择文章类型">
+                    <el-option
+                            v-for="item in getCateOpts"
+                            :key="item.key"
+                            :label="item.value"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="20" :offset="1">
+                <el-input
+                        placeholder="标签，多个标签，请用逗号(,)分割"
+                        v-model="blog.tags"
+                        clearable>
+                </el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px">
+            <el-col :span="23" :offset="1">
                 <el-button type="primary" @click="saveDraft()">Save Draft</el-button>
                 <el-button type="primary" @click="update()">Update</el-button>
             </el-col>
         </el-row>
+
     </div>
 </template>
 
@@ -48,6 +75,7 @@
     import {BlogService} from "../../_services/blog.service";
     import {ConvertService} from "../../_services/convert.service";
     import * as _ from "lodash";
+    import {mapGetters} from "vuex";
 
 
     let convertService = new ConvertService();
@@ -64,6 +92,8 @@
                     context: null,
                     author: null,
                     createTime: new Date(),
+                    categories: null,
+                    tags: null,
                     id: null
                 },
                 isEditable: true,
@@ -108,7 +138,9 @@
 
             update() {
                 let oldBlog = blogTmp;
-                if (oldBlog.title === this.blog.title && oldBlog.context === this.blog.context && oldBlog.author === this.blog.author) {
+                if (oldBlog.title === this.blog.title && oldBlog.context === this.blog.context
+                  && oldBlog.author === this.blog.author && oldBlog.categories === this.blog.categories
+                  && oldBlog.tags === this.blog.tags) {
                     window.alert("there is no change!");
                     return;
                 }
@@ -174,6 +206,11 @@
                     e.preventDefault()
                 }
             }
+        },
+        computed: {
+            ...mapGetters({
+                getCateOpts: 'setting/getCategories'
+            })
         },
         activated() {
             this.init();

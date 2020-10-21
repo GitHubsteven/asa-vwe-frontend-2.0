@@ -10,7 +10,7 @@ export class BlogService {
     constructor() {
     }
 
-//定义一个方法查询
+    //定义一个方法查询
     listBlogs(searchOpt) {
         return axiosService.post(blogs.prefix + blogs.list, searchOpt);
     }

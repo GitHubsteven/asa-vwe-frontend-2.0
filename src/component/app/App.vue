@@ -7,6 +7,9 @@
                     <el-menu-item index="/blog-list">
                         Blogs
                     </el-menu-item>
+                    <el-menu-item index="/statistics">
+                        Statistics
+                    </el-menu-item>
                     <el-menu-item index="/about-me">
                         About Me
                     </el-menu-item>
@@ -33,7 +36,11 @@
                                 <el-dropdown-item>
                                     <el-link @click="logoutBtn()">Logout</el-link>
                                 </el-dropdown-item>
-                                <el-dropdown-item>language</el-dropdown-item>
+                                <el-dropdown-item>
+                                    <el-link @click="changeLanguage()">
+                                        language
+                                    </el-link>
+                                </el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-menu-item>
@@ -70,6 +77,7 @@
                 clearAlert: 'alert/clear',
                 logout: 'account/logout',
                 switchEnv: 'env/switchTo',
+                initSetting: 'setting/refresh'
             }),
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
@@ -82,7 +90,33 @@
             },
             handleCommand(apiEnv) {
                 this.switchEnv(apiEnv);
+            },
+            changeLanguage() {
+                this.$confirm('确定切换语言吗?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    if (this.$i18n.locale === 'zh-CN') {
+                        this.$i18n.locale = 'en-US';//关键语句
+                        console.log('en-US')
+                    } else {
+                        this.$i18n.locale = 'zh-CN';//关键语句
+                        console.log('zh-CN')
+                    }
+                }).catch(() => {
+                    console.log('catch');
+                    this.$message({
+                        type: 'info',
+                    });
+                });
+            },
+            init() {
+                this.initSetting();
             }
+        },
+        mounted() {
+            this.init()
         },
         computed: {
             ...mapState({
