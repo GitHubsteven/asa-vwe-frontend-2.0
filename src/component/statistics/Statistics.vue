@@ -1,8 +1,14 @@
 <template>
     <div>
-        <h2>Statistics</h2>
-        <div style="width: 40%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="cateStat"></div>
-        <div style="width: 40%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="timeStat"></div>
+        <el-row>
+            <el-col :span="12">
+                <div style="width: 80%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="cateStat"/>
+            </el-col>
+            <el-col :span="12">
+                <div style="width: 80%;height: 500px;border:1px solid rgb(180,180,180);top: 0" id="timeStat"/>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
@@ -26,10 +32,12 @@
             return {}
         },
         methods: {
-            describeBlogByCategory: () => {
+            describeBlogByCategory() {
                 let myChart = echarts.init(document.getElementById('cateStat'));
-
-                statisticsService.blogByCategory().then(data => {
+                myChart.showLoading();
+                statisticsService.blogByCategory().then(resp => {
+                    myChart.hideLoading();
+                    let data = this.getBlogByCateData(resp);
                     let _option = {
                         title: {
                             text: '博客分类统计',
@@ -73,12 +81,75 @@
 
                 });
             },
-            describeBlogByCreatTime:()=>{
-
+            describeBlogByCreatTime() {
+                let timeChart = echarts.init(document.getElementById('timeStat'));
+                statisticsService.blogByCreateTime().then(resp => {
+                    let data = this.groupBlogByCreateTimeData(resp);
+                    let option = {
+                        color: ['#3398DB'],
+                        title: {
+                            text: '博客分类统计',
+                            subtext: '按月份分类',
+                            left: 'center'
+                        },
+                        tooltip: {},
+                        legend: {
+                            orient: 'vertical',
+                            right: 10,
+                            top: 20,
+                            bottom: 20,
+                            data: ['按月份分类']
+                        },
+                        xAxis: {
+                            data: data.xData
+                        },
+                        yAxis: {},
+                        series: [{
+                            name: '按月份分类',
+                            type: 'bar',
+                            data: data.yData
+                        }]
+                    };
+                    timeChart.setOption(option);
+                }, error => {
+                    // do something?
+                })
+            },
+            getBlogByCateData(resp) {
+                if (!resp) return {};
+                let legendData = [];
+                let seriesData = [];
+                let selected = {};
+                resp.forEach(ele => {
+                    legendData.push(ele._id);
+                    seriesData.push({name: ele._id, value: ele.count});
+                    let key = ele._id;
+                    selected[key] = true;
+                });
+                return {
+                    legendData: legendData,
+                    seriesData: seriesData,
+                    selected: selected
+                };
+            },
+            groupBlogByCreateTimeData(resp) {
+                let _xData = [];
+                let _yData = [];
+                if (resp) {
+                    resp.forEach(ele => {
+                        _xData.push(ele._id);
+                        _yData.push(ele.count);
+                    })
+                }
+                return {
+                    xData: _xData,
+                    yData: _yData
+                }
             }
         },
         mounted: function () {
             this.describeBlogByCategory();
+            this.describeBlogByCreatTime();
         }
     }
 </script>

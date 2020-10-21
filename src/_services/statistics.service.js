@@ -19,4 +19,12 @@ export class StatisticsService {
         return axiosService.get(statistics.prefix + statistics.blogByCategory);
     }
 
+    /**
+     * 获取blog按类别分类
+     *
+     * @returns {Promise<*>}
+     */
+    blogByCreateTime() {
+        return axiosService.get(statistics.prefix + statistics.blogByCreateTime);
+    }
 }

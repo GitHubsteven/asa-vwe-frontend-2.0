@@ -44,5 +44,6 @@ let common = {
 let statistics = {
     prefix: "/statistics",
     blogByCategory: "/blogByCategory",
-    blogByTag: "/blogByTag"
+    blogByTag: "/blogByTag",
+    blogByCreateTime: "/blogByCreateTime"
 };
