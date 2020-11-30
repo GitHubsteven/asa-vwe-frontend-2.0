@@ -9,7 +9,7 @@
                     <el-tag type="info">{{this.blog.createTime ? this.blog.createTime: "-"}}</el-tag>
                 </div>
                 <div class="grid-content bg-purple-dark" id="blog2" style="margin-top: 5px">
-                    <el-tag type="info" v-for="tag in blog.tags" style="margin-right: 2px">{{tag}}</el-tag>
+                    <el-tag type="info" :key="tag" v-for="tag in blog.tags" style="margin-right: 2px">{{tag}}</el-tag>
                 </div>
                 <hr/>
                 <div v-html="convertMarkdown(blog.context)"/>

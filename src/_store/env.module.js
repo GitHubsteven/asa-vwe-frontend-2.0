@@ -13,6 +13,7 @@ const mutations = {
         }
         localStorage.setItem(apiEnv.key, vwe_env);
         state.apiEnv = vwe_env;
+        location.reload();
     },
 
     getEnv(state) {

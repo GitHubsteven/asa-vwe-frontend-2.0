@@ -1,6 +1,6 @@
 <template>
     <div style="margin-bottom: 1%">
-        <el-container style="height: 100%; min-height: 700px" :class="`env_${env}`">
+        <el-container style="height: 100%; min-height: 700px">
             <el-header>
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router
                          @select="handleSelect">
@@ -51,16 +51,14 @@
                 <router-view></router-view>
             </el-main>
             <div class="line"></div>
-            <el-footer class="footer_context"><label>© 2020 imango.top |<a
-                    href="http://www.beianbeian.com/beianxinxi/8300a5eebbc046ac3cfddc082dacc0fc.html">赣ICP备20006372号-1</a></label>
-            </el-footer>
+
         </el-container>
     </div>
 </template>
 
 <script>
     import {router} from '../../_helpers/router.js'
-    import {mapActions, mapState} from "vuex"
+    import {mapActions, mapState, mapMutations} from "vuex"
 
     export default {
         name: "App",
@@ -73,10 +71,13 @@
             };
         },
         methods: {
+            ...mapMutations('env', {
+                switchEnv: 'switchTo'
+            }),
             ...mapActions({
                 clearAlert: 'alert/clear',
                 logout: 'account/logout',
-                switchEnv: 'env/switchTo',
+                // switchEnv: 'env/switchTo',
                 initSetting: 'setting/refresh'
             }),
             handleSelect(key, keyPath) {
@@ -124,12 +125,22 @@
                 status: state => state.account.status,
                 user: state => state.account.user,
                 env: state => state.env.apiEnv
-            })
+            }),
+            appEnv() {
+                const env = this.env || localStorage.getItem('vwe_env')
+                const doc = document.getElementsByTagName('body');
+                doc[0].className = `${doc[0].className} env_${env}`
+                return env
+            }
         },
         watch: {
             $route(to, from) {
                 // clear alert on location change
                 this.clearAlert();
+            },
+            appEnv(val) {
+                const doc = document.getElementsByTagName('body');
+                console.log(doc);
             }
         },
         router
